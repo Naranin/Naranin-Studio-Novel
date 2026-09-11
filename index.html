@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naranin Novel Studio — คลังนิยายรักสดใส</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Mali (หัวข้อ/ความน่ารัก) & Prompt (เนื้อหาอ่านง่าย) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,400;0,600;0,700;1,400&family=Prompt:wght@300;400;500;600&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti for cute celebrate effects -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cute: ['Mali', 'cursive'],
+                        body: ['Prompt', 'sans-serif'],
+                        novel: ['Sarabun', 'sans-serif']
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff0f3',
+                            100: '#ffe5ec',
+                            200: '#ffccd5',
+                            300: '#ffb3c1',
+                            400: '#ff758f',
+                            500: '#ff4d6d',
+                            600: '#c9184a',
+                        },
+                        cream: '#FFFDF9',
+                        warm: '#FDFBF7'
+                    },
+                    boxShadow: {
+                        'cute': '0 8px 25px -4px rgba(255, 117, 143, 0.25)',
+                        'cute-lg': '0 12px 30px -4px rgba(255, 117, 143, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #FFFDF9;
+        }
+        .font-cute {
+            font-family: 'Mali', cursive;
+        }
+        .reader-font {
+            font-family: 'Sarabun', sans-serif;
+        }
+        /* Custom cute scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFE5EC;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFB3C1;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF758F;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased min-h-screen flex flex-col selection:bg-brand-200 selection:text-brand-600">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-brand-100 shadow-sm transition-all">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-18 flex items-center justify-between py-3">
+            <!-- Brand Logo -->
+            <a href="#" onclick="showHomeView(); return false;" class="flex items-center gap-2 group">
+                <span class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-400 to-rose-300 text-white flex items-center justify-center text-xl shadow-cute transform group-hover:rotate-6 transition duration-200">
+                    🍓
+                </span>
+                <div>
+                    <h1 id="navSiteName" class="font-cute text-xl sm:text-2xl font-bold text-brand-600 tracking-tight flex items-center gap-1.5">
+                        Naranin Studio <span class="text-xs bg-brand-100 text-brand-600 px-2 py-0.5 rounded-full font-body font-normal">Official</span>
+                    </h1>
+                    <p class="text-xs text-rose-400 font-cute -mt-1 hidden sm:block">คลังนิยายรักอบอุ่นหัวใจ ✨</p>
+                </div>
+            </a>
+
+            <!-- Right Actions: Coins, Donate, Search/Filter -->
+            <div class="flex items-center gap-3">
+                <!-- Coin Balance Pill -->
+                <div class="flex items-center bg-amber-50 border border-amber-200 rounded-full px-3 py-1.5 shadow-sm">
+                    <span class="text-amber-500 text-base mr-1.5 animate-bounce">🪙</span>
+                    <span class="text-sm font-semibold text-amber-800 mr-2" id="walletBalance">0</span>
+                    <button onclick="openTopupModal()" class="bg-amber-400 hover:bg-amber-500 active:scale-95 text-white text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 transition shadow-sm" title="เติมเหรียญ">
+                        <i class="fa-solid fa-plus text-[10px]"></i> เติมเหรียญ
+                    </button>
+                </div>
+
+                <!-- Donate Button -->
+                <button onclick="openDonateModal()" class="hidden md:flex items-center gap-1.5 bg-gradient-to-r from-brand-400 to-rose-400 hover:from-brand-500 hover:to-rose-500 active:scale-95 text-white font-cute text-sm px-4 py-2 rounded-full shadow-cute transition duration-200">
+                    <i class="fa-solid fa-heart text-white animate-pulse"></i> โดเนตนักเขียน
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-6xl mx-auto px-4 sm:px-6 py-6 w-full">
+
+        <!-- ================= HOME VIEW ================= -->
+        <div id="homeView" class="space-y-10">
+
+            <!-- Hero & Author Card -->
+            <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-50 via-rose-50 to-amber-50 border-2 border-brand-100 p-6 sm:p-8 shadow-cute">
+                <!-- Decorative background shapes -->
+                <div class="absolute -right-8 -bottom-8 text-9xl text-brand-100/50 select-none pointer-events-none">🌸</div>
+                <div class="absolute right-1/4 -top-6 text-7xl text-amber-100/60 select-none pointer-events-none">✨</div>
+
+                <div class="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6">
+                    <!-- Author Avatar with cute border -->
+                    <div class="relative group">
+                        <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl overflow-hidden border-4 border-white shadow-cute transform group-hover:scale-105 transition duration-300">
+                            <img id="authorAvatar" src="" alt="Author" class="w-full h-full object-cover">
+                        </div>
+                        <span class="absolute -bottom-2 -right-2 bg-brand-500 text-white p-1.5 rounded-full text-xs shadow-md">
+                            ✍️
+                        </span>
+                    </div>
+
+                    <!-- Author Info -->
+                    <div class="text-center md:text-left space-y-2.5 flex-1">
+                        <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
+                            <h2 id="authorName" class="text-2xl sm:text-3xl font-cute font-bold text-gray-800"></h2>
+                            <span class="bg-brand-500 text-white font-cute text-xs px-2.5 py-0.5 rounded-full shadow-sm">
+                                นักเขียนประจำสตูดิโอ 🎀
+                            </span>
+                        </div>
+                        <p id="authorBio" class="text-gray-600 text-sm sm:text-base leading-relaxed max-w-2xl"></p>
+
+                        <!-- Stats Row -->
+                        <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
+                            <div class="bg-white/80 backdrop-blur-sm px-3.5 py-1.5 rounded-2xl border border-brand-100 flex items-center gap-2 shadow-sm">
+                                <span class="text-brand-400 text-sm"><i class="fa-solid fa-book-open"></i></span>
+                                <span class="text-xs text-gray-500">ผลงาน: <strong class="text-gray-800" id="totalNovelsCount">0</strong> เรื่อง</span>
+                            </div>
+                            <div class="bg-white/80 backdrop-blur-sm px-3.5 py-1.5 rounded-2xl border border-brand-100 flex items-center gap-2 shadow-sm">
+                                <span class="text-rose-400 text-sm"><i class="fa-solid fa-heart"></i></span>
+                                <span class="text-xs text-gray-500">หัวใจรวม: <strong class="text-gray-800" id="totalHeartsCount">0</strong></span>
+                            </div>
+                            <div class="bg-white/80 backdrop-blur-sm px-3.5 py-1.5 rounded-2xl border border-brand-100 flex items-center gap-2 shadow-sm">
+                                <span class="text-amber-500 text-sm"><i class="fa-solid fa-gift"></i></span>
+                                <span class="text-xs text-gray-500">ยอดโดเนตสะสม: <strong class="text-gray-800" id="totalDonationCoins">0</strong> เหรียญ</span>
+                            </div>
+                        </div>
+
+                        <!-- CTA buttons for author -->
+                        <div class="pt-3 flex flex-wrap items-center justify-center md:justify-start gap-3">
+                            <button onclick="openDonateModal()" class="bg-gradient-to-r from-brand-400 to-rose-500 hover:from-brand-500 hover:to-rose-600 text-white font-cute text-sm px-5 py-2.5 rounded-2xl shadow-cute active:scale-95 transition flex items-center gap-2">
+                                <i class="fa-solid fa-heart"></i> มอบของขวัญ & โดเนตให้นักเขียน
+                            </button>
+                            <button onclick="openTopupModal()" class="bg-amber-100 hover:bg-amber-200 text-amber-900 font-cute text-sm px-4 py-2.5 rounded-2xl border border-amber-200 active:scale-95 transition flex items-center gap-2">
+                                <i class="fa-solid fa-coins text-amber-500"></i> กระเป๋าเหรียญของฉัน
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Novels Catalog Section -->
+            <section class="space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-2xl font-cute font-bold text-gray-800 flex items-center gap-2">
+                            <span>📚 ผลงานนิยายทั้งหมด</span>
+                            <span class="text-xs font-normal bg-brand-100 text-brand-600 px-2.5 py-0.5 rounded-full">เรื่องเด็ดน่าอ่าน</span>
+                        </h3>
+                        <p class="text-xs sm:text-sm text-gray-500">อ่านฟรีตอนแรก และร่วมสนับสนุนตอนพิเศษเพื่อเป็นกำลังใจให้นักเขียนนะคะ</p>
+                    </div>
+                </div>
+
+                <!-- Grid of Novels -->
+                <div id="novelsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Dynamic Novel Cards inserted via JS -->
+                </div>
+            </section>
+
+            <!-- Community / Recent Donations Board -->
+            <section class="rounded-3xl bg-white border-2 border-brand-100 p-6 shadow-sm space-y-4">
+                <div class="flex items-center justify-between border-b border-brand-50 pb-3">
+                    <h4 class="font-cute font-bold text-lg text-brand-600 flex items-center gap-2">
+                        <span>💖 กระดานผู้สนับสนุนใจดี (Donation Hall of Fame)</span>
+                    </h4>
+                    <button onclick="openDonateModal()" class="text-xs font-cute text-brand-500 hover:text-brand-700 underline">
+                        + ส่งกำลังใจบ้าง
+                    </button>
+                </div>
+                <div id="donationList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                    <!-- Dynamic Donation items -->
+                </div>
+            </section>
+
+        </div>
+
+        <!-- ================= NOVEL DETAIL & CHAPTERS VIEW ================= -->
+        <div id="novelDetailView" class="hidden space-y-8">
+            <!-- Back to Home button -->
+            <button onclick="showHomeView()" class="inline-flex items-center gap-2 text-sm font-cute text-brand-600 hover:text-brand-700 bg-brand-50 hover:bg-brand-100 px-4 py-2 rounded-2xl transition">
+                <i class="fa-solid fa-arrow-left"></i> กลับหน้ารวมนิยาย
+            </button>
+
+            <!-- Novel Info Banner -->
+            <div class="bg-white rounded-3xl border-2 border-brand-100 p-6 sm:p-8 shadow-cute flex flex-col md:flex-row gap-6">
+                <div class="w-full md:w-56 h-72 rounded-2xl overflow-hidden shadow-md flex-shrink-0 border-2 border-brand-100">
+                    <img id="detailCover" src="" alt="Novel Cover" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-1 space-y-3">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span id="detailCategory" class="text-xs font-cute bg-purple-100 text-purple-700 px-3 py-1 rounded-full"></span>
+                        <span id="detailStatus" class="text-xs font-cute bg-brand-100 text-brand-600 px-3 py-1 rounded-full"></span>
+                    </div>
+                    <h2 id="detailTitle" class="text-2xl sm:text-3xl font-cute font-bold text-gray-800"></h2>
+                    <p id="detailTagline" class="text-brand-500 font-cute text-sm"></p>
+                    <p id="detailSynopsis" class="text-gray-600 text-sm sm:text-base leading-relaxed bg-brand-50/40 p-4 rounded-2xl border border-brand-50"></p>
+
+                    <div class="flex items-center gap-4 pt-2">
+                        <span class="text-xs text-gray-500"><i class="fa-solid fa-eye text-brand-400 mr-1"></i> <span id="detailViews">0</span> วิว</span>
+                        <span class="text-xs text-gray-500"><i class="fa-solid fa-heart text-rose-400 mr-1"></i> <span id="detailHearts">0</span> หัวใจ</span>
+                        <button onclick="toggleNovelHeart()" id="detailHeartBtn" class="text-xs font-cute bg-rose-50 text-rose-600 hover:bg-rose-100 px-3 py-1.5 rounded-full border border-rose-200 transition active:scale-95 flex items-center gap-1.5">
+                            <i class="fa-regular fa-heart"></i> ส่งหัวใจ
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter List -->
+            <div class="bg-white rounded-3xl border-2 border-brand-100 p-6 shadow-sm space-y-4">
+                <h3 class="text-xl font-cute font-bold text-gray-800 flex items-center justify-between">
+                    <span>📖 สารบัญตอนทั้งหมด (<span id="detailChapterCount">0</span> ตอน)</span>
+                    <span class="text-xs font-normal text-gray-400">คลิกที่ตอนเพื่อเริ่มอ่าน</span>
+                </h3>
+
+                <div id="chapterListContainer" class="divide-y divide-brand-50">
+                    <!-- Chapters injected dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= READER VIEW ================= -->
+        <div id="readerView" class="hidden space-y-6">
+
+            <!-- Reader Navigation Toolbar -->
+            <div class="sticky top-20 z-30 bg-white/95 backdrop-blur-md rounded-2xl border border-brand-100 p-3 shadow-sm flex flex-wrap items-center justify-between gap-3">
+                <button onclick="backToNovelDetail()" class="text-xs sm:text-sm font-cute text-brand-600 hover:text-brand-700 bg-brand-50 px-3 py-1.5 rounded-xl transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-list-ul"></i> สารบัญ
+                </button>
+
+                <!-- Reader Customizer: Font Size & Background Themes -->
+                <div class="flex items-center gap-2">
+                    <!-- Font size controls -->
+                    <div class="flex items-center bg-gray-100 rounded-xl p-0.5">
+                        <button onclick="changeFontSize(-2)" class="px-2.5 py-1 text-xs font-bold text-gray-700 hover:bg-white rounded-lg transition" title="ลดขนาดอักษร">A-</button>
+                        <span id="fontSizeDisplay" class="px-2 text-xs font-medium text-gray-500">18px</span>
+                        <button onclick="changeFontSize(2)" class="px-2.5 py-1 text-xs font-bold text-gray-700 hover:bg-white rounded-lg transition" title="เพิ่มขนาดอักษร">A+</button>
+                    </div>
+
+                    <!-- Theme Background switcher -->
+                    <div class="flex items-center gap-1 bg-gray-100 rounded-xl p-1">
+                        <button onclick="setReaderTheme('warm')" class="w-6 h-6 rounded-lg bg-[#FDFBF7] border border-amber-200 shadow-sm" title="ธีมครีมอุ่น"></button>
+                        <button onclick="setReaderTheme('pink')" class="w-6 h-6 rounded-lg bg-[#FFF0F3] border border-pink-200 shadow-sm" title="ธีมพาสเทลชมพู"></button>
+                        <button onclick="setReaderTheme('white')" class="w-6 h-6 rounded-lg bg-[#FFFFFF] border border-gray-200 shadow-sm" title="ธีมขาวสะอาด"></button>
+                        <button onclick="setReaderTheme('dark')" class="w-6 h-6 rounded-lg bg-[#2D2B38] border border-purple-900 shadow-sm" title="ธีมกลางคืนนุ่มนวล"></button>
+                    </div>
+                </div>
+
+                <!-- Next / Prev controls -->
+                <div class="flex items-center gap-2">
+                    <button id="prevChapterBtn" onclick="navigateChapter(-1)" class="text-xs font-cute bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-xl transition disabled:opacity-40">
+                        <i class="fa-solid fa-chevron-left mr-1"></i> ก่อนหน้า
+                    </button>
+                    <button id="nextChapterBtn" onclick="navigateChapter(1)" class="text-xs font-cute bg-brand-500 hover:bg-brand-600 text-white px-3 py-1.5 rounded-xl transition shadow-sm disabled:opacity-40">
+                        ถัดไป <i class="fa-solid fa-chevron-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Reading Canvas / Paper Card -->
+            <article id="readerPaper" class="rounded-3xl border border-brand-100 p-6 sm:p-12 shadow-sm transition-colors duration-200 min-h-[60vh] max-w-3xl mx-auto space-y-8 bg-[#FDFBF7] text-gray-800">
+                <div class="text-center space-y-2 border-b border-brand-100 pb-6">
+                    <p id="readerNovelTitle" class="text-xs sm:text-sm font-cute text-brand-500 font-semibold"></p>
+                    <h2 id="readerChapterTitle" class="text-2xl sm:text-3xl font-cute font-bold text-gray-800"></h2>
+                    <p id="readerChapterDate" class="text-xs text-gray-400"></p>
+                </div>
+
+                <!-- Unlocked Content View -->
+                <div id="readerContentArea" class="reader-font leading-relaxed whitespace-pre-line text-lg tracking-wide space-y-4">
+                    <!-- Story content goes here -->
+                </div>
+
+                <!-- Locked Content Overlay (Shown when chapter is locked & not bought) -->
+                <div id="lockedOverlay" class="hidden text-center py-10 px-4 space-y-5 bg-gradient-to-b from-transparent via-brand-50/60 to-brand-100/70 rounded-3xl border-2 border-dashed border-brand-200">
+                    <div class="w-16 h-16 bg-amber-100 text-amber-500 rounded-full flex items-center justify-center text-2xl mx-auto shadow-inner animate-bounce">
+                        🔒
+                    </div>
+                    <div class="space-y-1">
+                        <h4 class="text-xl font-cute font-bold text-gray-800">ตอนนี้เป็นตอนพิเศษ (ติดเหรียญ)</h4>
+                        <p class="text-xs sm:text-sm text-gray-600">ร่วมสนับสนุนนักเขียนเพียง <strong id="lockedCoinPrice" class="text-amber-600 text-lg">0</strong> เหรียญ เพื่ออ่านตอนนี้อย่างจุใจ ✨</p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+                        <button onclick="unlockCurrentChapter()" class="w-full sm:w-auto bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-white font-cute font-bold px-6 py-3 rounded-2xl shadow-cute active:scale-95 transition flex items-center justify-center gap-2">
+                            <span>🪙 ปลดล็อกตอนนี้</span> (<span id="btnUnlockCoinPrice">0</span> เหรียญ)
+                        </button>
+                        <button onclick="openTopupModal()" class="w-full sm:w-auto bg-white hover:bg-gray-50 text-amber-700 font-cute px-5 py-3 rounded-2xl border border-amber-200 transition">
+                            เติมเหรียญเพิ่ม
+                        </button>
+                    </div>
+                    <p class="text-[11px] text-gray-400">เมื่อปลดล็อกแล้วจะสามารถกลับมาอ่านซ้ำได้ตลอดเวลาบนอุปกรณ์นี้ค่ะ</p>
+                </div>
+
+                <!-- Reader End-of-chapter Action Box -->
+                <div class="border-t border-brand-100 pt-8 mt-12 text-center space-y-4">
+                    <p class="font-cute text-sm text-gray-500">อ่านตอนนี้จบแล้ว ชอบไหมคะ? ส่งพลังใจให้นักเขียนได้น้า 💖</p>
+                    <div class="flex justify-center items-center gap-3">
+                        <button onclick="openDonateModal()" class="bg-brand-50 hover:bg-brand-100 text-brand-600 font-cute text-sm px-5 py-2.5 rounded-2xl border border-brand-200 active:scale-95 transition flex items-center gap-2 shadow-sm">
+                            <span>🍓 ส่งสติกเกอร์โดเนต</span>
+                        </button>
+                        <button onclick="shareChapter()" class="bg-gray-50 hover:bg-gray-100 text-gray-600 font-cute text-sm px-4 py-2.5 rounded-2xl border border-gray-200 transition flex items-center gap-2">
+                            <i class="fa-solid fa-share-nodes"></i> แชร์ตอนนี้
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+    </main>
+
+    <!-- ================= MODAL: TOP-UP COINS (ระบบเติมเหรียญ) ================= -->
+    <div id="topupModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-6 shadow-2xl border-2 border-brand-100 relative animate-float">
+            <!-- Close Button -->
+            <button onclick="closeTopupModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition">
+                ✕
+            </button>
+
+            <!-- Modal Header -->
+            <div class="text-center space-y-1">
+                <span class="text-3xl">🪙</span>
+                <h3 class="text-2xl font-cute font-bold text-gray-800">เติมเหรียญสนับสนุน</h3>
+                <p class="text-xs text-gray-500">เหรียญใช้สำหรับปลดล็อกตอนพิเศษและส่งโดเนตให้นักเขียน</p>
+            </div>
+
+            <!-- Current Balance banner -->
+            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3 flex items-center justify-between">
+                <span class="text-xs font-cute text-amber-800">เหรียญคงเหลือของคุณ:</span>
+                <span class="font-bold text-amber-600 text-lg"><span id="modalWalletBalance">0</span> เหรียญ</span>
+            </div>
+
+            <!-- Packages Selection Grid -->
+            <div class="grid grid-cols-2 gap-3" id="topupPackagesGrid">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- PromptPay QR Code Simulated Display -->
+            <div id="paymentArea" class="bg-gray-50 rounded-2xl p-4 border border-gray-200 space-y-3 text-center">
+                <div class="text-xs font-cute text-gray-600">
+                    สแกนชำระผ่าน PromptPay (พร้อมเพย์)
+                </div>
+                <!-- Cute Mock QR Code -->
+                <div class="w-36 h-36 bg-white border-2 border-brand-200 rounded-2xl mx-auto p-2 shadow-sm flex flex-col items-center justify-center">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=PROMPTPAY-DEMO-PAYMENT" alt="PromptPay QR" class="w-28 h-28 object-contain">
+                    <span class="text-[10px] text-brand-600 font-cute mt-0.5">PromptPay QR</span>
+                </div>
+                <div class="text-xs text-gray-500">
+                    พร้อมเพย์นักเขียน: <strong id="modalPromptPayNumber" class="text-brand-600">08X-XXX-XXXX</strong>
+                </div>
+                <button onclick="confirmSimulatedTopup()" class="w-full bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white font-cute font-bold py-2.5 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-circle-check"></i> ชำระเงินเรียบร้อย (รับเหรียญทันที)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: DONATE / TIP WRITER (ระบบโดเนต) ================= -->
+    <div id="donateModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-6 shadow-2xl border-2 border-brand-100 relative max-h-[90vh] overflow-y-auto">
+            <!-- Close Button -->
+            <button onclick="closeDonateModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition">
+                ✕
+            </button>
+
+            <!-- Header -->
+            <div class="text-center space-y-1">
+                <span class="text-3xl">💖</span>
+                <h3 class="text-2xl font-cute font-bold text-gray-800">โดเนตให้กำลังใจนักเขียน</h3>
+                <p class="text-xs text-gray-500">เลือกของขวัญสติกเกอร์และพิมพ์ข้อความส่งตรงถึงนักเขียนได้เลยค่ะ</p>
+            </div>
+
+            <!-- Stickers Grid -->
+            <div class="space-y-2">
+                <label class="text-xs font-cute text-gray-700">เลือกของขวัญสติกเกอร์ที่ต้องการมอบ:</label>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="stickerSelectionGrid">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+
+            <!-- Form: Donor Name & Encouraging Message -->
+            <div class="space-y-3">
+                <div>
+                    <label class="text-xs font-cute text-gray-600 block mb-1">ชื่อเล่นหรือนามปากกาของคุณ:</label>
+                    <input type="text" id="donorNameInput" placeholder="เช่น น้องส้มโอสายเปย์, นักอ่านเงา" class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-400 font-cute">
+                </div>
+                <div>
+                    <label class="text-xs font-cute text-gray-600 block mb-1">ข้อความให้กำลังใจนักเขียน:</label>
+                    <textarea id="donorMessageInput" rows="3" placeholder="เช่น นิยายสนุกมากกก รอติดตามตอนต่อไปนะคะ สู้ๆ ค่า 🌸" class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-400 font-cute"></textarea>
+                </div>
+            </div>
+
+            <!-- Submit Donate Button -->
+            <button onclick="sendDonation()" class="w-full bg-gradient-to-r from-brand-400 to-rose-500 hover:from-brand-500 hover:to-rose-600 active:scale-95 text-white font-cute font-bold py-3 rounded-2xl shadow-cute transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-heart"></i> ส่งกำลังใจ (<span id="donateSubmitCoins">5</span> เหรียญ)
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-gray-900 text-white font-cute text-sm px-4 py-3 rounded-2xl shadow-2xl hidden items-center gap-2 border border-white/20 transform transition duration-300">
+        <span id="toastIcon">✨</span>
+        <span id="toastMsg">ข้อความ</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-16 bg-white border-t border-brand-100 py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center space-y-3">
+            <p class="font-cute text-brand-600 text-sm">
+                🌸 <span id="footerSiteName">Naranin Novel Studio</span> — ทุกตัวอักษรกลั่นกรองมาจากหัวใจ 💖
+            </p>
+            <p class="text-xs text-gray-400">
+                สงวนลิขสิทธิ์ตามพระราชบัญญัติลิขสิทธิ์ ไม่อนุญาตให้คัดลอก ดัดแปลง หรือเผยแพร่ซ้ำโดยไม่ได้รับอนุญาต
+            </p>
+            <div class="flex justify-center items-center gap-4 text-gray-400 text-xs pt-1">
+                <a href="#" onclick="showHomeView(); return false;" class="hover:text-brand-500">หน้าหลัก</a>
+                <span>•</span>
+                <a href="#" onclick="openDonateModal(); return false;" class="hover:text-brand-500">สนับสนุนนักเขียน</a>
+                <span>•</span>
+                <a href="#" onclick="openTopupModal(); return false;" class="hover:text-brand-500">เติมเหรียญ</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load Novel Data & Application Script -->
+    <script src="novels.js"></script>
+    <script>
+        // State Management with LocalStorage
+        let currentNovel = null;
+        let currentChapter = null;
+        let selectedTopupPkg = TOPUP_PACKAGES[0];
+        let selectedSticker = DONATION_STICKERS[0];
+        let currentFontSize = 18;
+
+        // Initialize User Wallet & Unlocked Chapters
+        function getWalletCoins() {
+            const saved = localStorage.getItem('user_wallet_coins');
+            if (saved === null) {
+                // Welcome bonus: 10 free coins!
+                localStorage.setItem('user_wallet_coins', '10');
+                return 10;
+            }
+            return parseInt(saved, 10);
+        }
+
+        function setWalletCoins(amount) {
+            localStorage.setItem('user_wallet_coins', amount.toString());
+            updateWalletUI();
+        }
+
+        function getUnlockedChapters() {
+            const saved = localStorage.getItem('user_unlocked_chapters');
+            return saved ? JSON.parse(saved) : [];
+        }
+
+        function isChapterUnlocked(novelId, chapterId) {
+            const unlocked = getUnlockedChapters();
+            return unlocked.includes(`${novelId}_ch_${chapterId}`);
+        }
+
+        function addUnlockedChapter(novelId, chapterId) {
+            const unlocked = getUnlockedChapters();
+            const key = `${novelId}_ch_${chapterId}`;
+            if (!unlocked.includes(key)) {
+                unlocked.push(key);
+                localStorage.setItem('user_unlocked_chapters', JSON.stringify(unlocked));
+            }
+        }
+
+        function getDonationHistory() {
+            const saved = localStorage.getItem('author_donations_history');
+            if (!saved) {
+                // Default initial donations
+                const defaultHistory = [
+                    { name: "พะแพงสายหวาน", sticker: "🍓", coins: 5, msg: "ติดตามผลงานคุณไรต์เสมอเลยค่า!", time: "10 นาทีที่แล้ว" },
+                    { name: "นักอ่านขอบเตียง", sticker: "🧋", coins: 20, msg: "ตอนล่าสุดฟินมากกก ส่งชานมเติมพลังค่ะ", time: "1 ชม. ที่แล้ว" },
+                    { name: "คุณแม่มดใจดี", sticker: "👑", coins: 100, msg: "ยกตำแหน่งนักเขียนในดวงใจให้เลยค่ะ 💖", time: "เมื่อวานนี้" }
+                ];
+                localStorage.setItem('author_donations_history', JSON.stringify(defaultHistory));
+                return defaultHistory;
+            }
+            return JSON.parse(saved);
+        }
+
+        function saveNewDonation(donation) {
+            const list = getDonationHistory();
+            list.unshift(donation);
+            localStorage.setItem('author_donations_history', JSON.stringify(list));
+            renderDonations();
+        }
+
+        // UI Helpers
+        function showToast(msg, icon = "✨") {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            document.getElementById('toastIcon').innerText = icon;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3000);
+        }
+
+        function updateWalletUI() {
+            const coins = getWalletCoins();
+            document.getElementById('walletBalance').innerText = coins;
+            document.getElementById('modalWalletBalance').innerText = coins;
+        }
+
+        // Rendering Home View
+        function renderHome() {
+            // Site config
+            document.getElementById('navSiteName').innerHTML = `${SITE_CONFIG.siteName} <span class="text-xs bg-brand-100 text-brand-600 px-2 py-0.5 rounded-full font-body font-normal">Official</span>`;
+            document.getElementById('footerSiteName').innerText = SITE_CONFIG.siteName;
+            document.getElementById('authorName').innerText = SITE_CONFIG.authorName;
+            document.getElementById('authorBio').innerText = SITE_CONFIG.authorBio;
+            document.getElementById('authorAvatar').src = SITE_CONFIG.authorAvatar;
+            document.getElementById('modalPromptPayNumber').innerText = SITE_CONFIG.promptPayNumber;
+
+            // Stats
+            document.getElementById('totalNovelsCount').innerText = NOVELS.length;
+            const totalHearts = NOVELS.reduce((sum, n) => sum + n.hearts, 0);
+            document.getElementById('totalHeartsCount').innerText = totalHearts.toLocaleString();
+
+            const donations = getDonationHistory();
+            const totalCoins = donations.reduce((sum, d) => sum + d.coins, 0);
+            document.getElementById('totalDonationCoins').innerText = totalCoins.toLocaleString();
+
+            // Render Novels Grid
+            const grid = document.getElementById('novelsGrid');
+            grid.innerHTML = '';
+
+            NOVELS.forEach(novel => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-3xl border-2 border-brand-100 p-5 shadow-sm hover:shadow-cute transition duration-300 flex flex-col sm:flex-row gap-5 group";
+                card.innerHTML = `
+                    <div class="w-full sm:w-40 h-56 rounded-2xl overflow-hidden shadow-sm relative flex-shrink-0">
+                        <img src="${novel.cover}" alt="${novel.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <span class="absolute top-2 left-2 ${novel.badgeColor} text-white font-cute text-[10px] px-2.5 py-0.5 rounded-full shadow-sm">
+                            ${novel.status}
+                        </span>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-between space-y-3">
+                        <div class="space-y-1.5">
+                            <span class="text-xs font-cute text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-100">
+                                ${novel.category}
+                            </span>
+                            <h4 class="text-xl font-cute font-bold text-gray-800 group-hover:text-brand-600 transition">
+                                ${novel.title}
+                            </h4>
+                            <p class="text-xs text-brand-500 font-cute font-medium">${novel.tagline}</p>
+                            <p class="text-xs text-gray-500 line-clamp-3 leading-relaxed">${novel.synopsis}</p>
+                        </div>
+                        <div class="pt-2 border-t border-brand-50 flex items-center justify-between">
+                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                <span><i class="fa-solid fa-eye text-brand-300"></i> ${novel.views.toLocaleString()}</span>
+                                <span><i class="fa-solid fa-heart text-rose-300"></i> ${novel.hearts.toLocaleString()}</span>
+                                <span><i class="fa-solid fa-list-ol text-amber-300"></i> ${novel.chapters.length} ตอน</span>
+                            </div>
+                            <button onclick="openNovelDetail('${novel.id}')" class="bg-brand-50 hover:bg-brand-500 hover:text-white text-brand-600 text-xs font-cute font-bold px-3.5 py-1.5 rounded-xl transition shadow-sm active:scale-95">
+                                อ่านเลย ✨
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            renderDonations();
+        }
+
+        function renderDonations() {
+            const list = document.getElementById('donationList');
+            list.innerHTML = '';
+            const history = getDonationHistory().slice(0, 6);
+
+            history.forEach(d => {
+                const item = document.createElement('div');
+                item.className = "bg-brand-50/50 rounded-2xl p-3 border border-brand-100 flex items-start gap-2.5";
+                item.innerHTML = `
+                    <span class="text-2xl">${d.sticker}</span>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between">
+                            <h5 class="font-cute font-bold text-xs text-gray-800 truncate">${d.name}</h5>
+                            <span class="text-[10px] font-cute text-amber-600 bg-amber-100 px-1.5 py-0.5 rounded-full">+${d.coins} 🪙</span>
+                        </div>
+                        <p class="text-xs text-gray-600 font-cute truncate mt-0.5">"${d.msg}"</p>
+                        <span class="text-[9px] text-gray-400">${d.time || 'เมื่อสักครู่'}</span>
+                    </div>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        // View Navigation
+        function showHomeView() {
+            document.getElementById('homeView').classList.remove('hidden');
+            document.getElementById('novelDetailView').classList.add('hidden');
+            document.getElementById('readerView').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openNovelDetail(novelId) {
+            currentNovel = NOVELS.find(n => n.id === novelId);
+            if (!currentNovel) return;
+
+            document.getElementById('detailCover').src = currentNovel.cover;
+            document.getElementById('detailTitle').innerText = currentNovel.title;
+            document.getElementById('detailTagline').innerText = currentNovel.tagline;
+            document.getElementById('detailCategory').innerText = currentNovel.category;
+            document.getElementById('detailStatus').innerText = currentNovel.status;
+            document.getElementById('detailSynopsis').innerText = currentNovel.synopsis;
+            document.getElementById('detailViews').innerText = currentNovel.views.toLocaleString();
+            document.getElementById('detailHearts').innerText = currentNovel.hearts.toLocaleString();
+            document.getElementById('detailChapterCount').innerText = currentNovel.chapters.length;
+
+            renderChapterList();
+
+            document.getElementById('homeView').classList.add('hidden');
+            document.getElementById('novelDetailView').classList.remove('hidden');
+            document.getElementById('readerView').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function backToNovelDetail() {
+            if (currentNovel) {
+                openNovelDetail(currentNovel.id);
+            } else {
+                showHomeView();
+            }
+        }
+
+        function renderChapterList() {
+            const container = document.getElementById('chapterListContainer');
+            container.innerHTML = '';
+
+            currentNovel.chapters.forEach(ch => {
+                const unlocked = !ch.isLocked || isChapterUnlocked(currentNovel.id, ch.id);
+                const item = document.createElement('div');
+                item.className = "py-3.5 px-3 rounded-2xl hover:bg-brand-50/50 transition flex items-center justify-between cursor-pointer group";
+                item.onclick = () => openReader(ch.id);
+
+                let badgeHtml = '';
+                if (!ch.isLocked) {
+                    badgeHtml = `<span class="text-xs font-cute text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">อ่านฟรี</span>`;
+                } else if (unlocked) {
+                    badgeHtml = `<span class="text-xs font-cute text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full border border-indigo-200">ปลดล็อกแล้ว ✨</span>`;
+                } else {
+                    badgeHtml = `<span class="text-xs font-cute text-amber-700 bg-amber-100 px-2.5 py-1 rounded-full border border-amber-200">🔒 ติดเหรียญ (${ch.coinPrice} 🪙)</span>`;
+                }
+
+                item.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-xl bg-brand-100 text-brand-600 text-xs font-cute font-bold flex items-center justify-center">
+                            ${ch.id}
+                        </span>
+                        <div>
+                            <h5 class="text-sm font-cute font-bold text-gray-800 group-hover:text-brand-600 transition">
+                                ${ch.title}
+                            </h5>
+                            <span class="text-[11px] text-gray-400">${ch.date}</span>
+                        </div>
+                    </div>
+                    <div>
+                        ${badgeHtml}
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function toggleNovelHeart() {
+            if (!currentNovel) return;
+            currentNovel.hearts += 1;
+            document.getElementById('detailHearts').innerText = currentNovel.hearts.toLocaleString();
+            document.getElementById('detailHeartBtn').innerHTML = `<i class="fa-solid fa-heart text-rose-500"></i> ส่งใจแล้ว!`;
+            confetti({ particleCount: 30, spread: 60, origin: { y: 0.7 } });
+            showToast("ส่งหัวใจให้นิยายเรื่องนี้แล้วนะคะ 💖");
+        }
+
+        // Reader View Logic
+        function openReader(chapterId) {
+            if (!currentNovel) return;
+            currentChapter = currentNovel.chapters.find(c => c.id === chapterId);
+            if (!currentChapter) return;
+
+            document.getElementById('readerNovelTitle').innerText = currentNovel.title;
+            document.getElementById('readerChapterTitle').innerText = currentChapter.title;
+            document.getElementById('readerChapterDate').innerText = `เผยแพร่: ${currentChapter.date}`;
+
+            const unlocked = !currentChapter.isLocked || isChapterUnlocked(currentNovel.id, currentChapter.id);
+            const contentArea = document.getElementById('readerContentArea');
+            const lockedOverlay = document.getElementById('lockedOverlay');
+
+            if (unlocked) {
+                contentArea.classList.remove('hidden');
+                lockedOverlay.classList.add('hidden');
+                contentArea.innerText = currentChapter.content;
+            } else {
+                // Show preview blur + locked overlay
+                contentArea.classList.remove('hidden');
+                lockedOverlay.classList.remove('hidden');
+                contentArea.innerText = currentChapter.content.substring(0, 120) + "...\n\n[เนื้อหาถูกล็อกเพื่อรอการปลดเหรียญ]";
+                document.getElementById('lockedCoinPrice').innerText = currentChapter.coinPrice;
+                document.getElementById('btnUnlockCoinPrice').innerText = currentChapter.coinPrice;
+            }
+
+            // Update prev/next button states
+            const currentIndex = currentNovel.chapters.findIndex(c => c.id === chapterId);
+            document.getElementById('prevChapterBtn').disabled = (currentIndex <= 0);
+            document.getElementById('nextChapterBtn').disabled = (currentIndex >= currentNovel.chapters.length - 1);
+
+            document.getElementById('homeView').classList.add('hidden');
+            document.getElementById('novelDetailView').classList.add('hidden');
+            document.getElementById('readerView').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function navigateChapter(offset) {
+            if (!currentNovel || !currentChapter) return;
+            const currentIndex = currentNovel.chapters.findIndex(c => c.id === currentChapter.id);
+            const newIndex = currentIndex + offset;
+            if (newIndex >= 0 && newIndex < currentNovel.chapters.length) {
+                openReader(currentNovel.chapters[newIndex].id);
+            }
+        }
+
+        function unlockCurrentChapter() {
+            if (!currentNovel || !currentChapter) return;
+            const coins = getWalletCoins();
+            const price = currentChapter.coinPrice;
+
+            if (coins < price) {
+                showToast(`เหรียญไม่พอค่ะ (ขาดอีก ${price - coins} เหรียญ)`, "⚠️");
+                openTopupModal();
+                return;
+            }
+
+            // Deduct coins & unlock
+            setWalletCoins(coins - price);
+            addUnlockedChapter(currentNovel.id, currentChapter.id);
+            confetti({ particleCount: 50, spread: 70, origin: { y: 0.6 } });
+            showToast(`ปลดล็อก ${currentChapter.title} สำเร็จ! ✨`);
+            openReader(currentChapter.id);
+        }
+
+        // Customizer: Font Size & Background Themes
+        function changeFontSize(delta) {
+            currentFontSize = Math.max(14, Math.min(28, currentFontSize + delta));
+            document.getElementById('fontSizeDisplay').innerText = `${currentFontSize}px`;
+            document.getElementById('readerContentArea').style.fontSize = `${currentFontSize}px`;
+        }
+
+        function setReaderTheme(theme) {
+            const paper = document.getElementById('readerPaper');
+            if (theme === 'warm') {
+                paper.className = "rounded-3xl border border-brand-100 p-6 sm:p-12 shadow-sm transition-colors duration-200 min-h-[60vh] max-w-3xl mx-auto space-y-8 bg-[#FDFBF7] text-gray-800";
+            } else if (theme === 'pink') {
+                paper.className = "rounded-3xl border border-pink-200 p-6 sm:p-12 shadow-sm transition-colors duration-200 min-h-[60vh] max-w-3xl mx-auto space-y-8 bg-[#FFF0F3] text-gray-800";
+            } else if (theme === 'white') {
+                paper.className = "rounded-3xl border border-gray-200 p-6 sm:p-12 shadow-sm transition-colors duration-200 min-h-[60vh] max-w-3xl mx-auto space-y-8 bg-white text-gray-800";
+            } else if (theme === 'dark') {
+                paper.className = "rounded-3xl border border-purple-900 p-6 sm:p-12 shadow-sm transition-colors duration-200 min-h-[60vh] max-w-3xl mx-auto space-y-8 bg-[#2D2B38] text-purple-100";
+            }
+        }
+
+        function shareChapter() {
+            if (navigator.share) {
+                navigator.share({
+                    title: currentNovel.title,
+                    text: `อ่าน ${currentChapter.title} - ${currentNovel.title}`,
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                showToast("คัดลอกลิงก์ไปยังคลิปบอร์ดแล้วค่ะ 📋");
+            }
+        }
+
+        // Top-up Modal Logic
+        function openTopupModal() {
+            renderTopupPackages();
+            updateWalletUI();
+            document.getElementById('topupModal').classList.remove('hidden');
+        }
+
+        function closeTopupModal() {
+            document.getElementById('topupModal').classList.add('hidden');
+        }
+
+        function renderTopupPackages() {
+            const grid = document.getElementById('topupPackagesGrid');
+            grid.innerHTML = '';
+
+            TOPUP_PACKAGES.forEach(pkg => {
+                const card = document.createElement('div');
+                const isSelected = selectedTopupPkg.id === pkg.id;
+                card.className = `p-3 rounded-2xl border-2 cursor-pointer transition text-center space-y-1 ${
+                    isSelected ? 'border-amber-400 bg-amber-50 shadow-sm' : 'border-gray-200 hover:border-amber-300'
+                }`;
+                card.onclick = () => {
+                    selectedTopupPkg = pkg;
+                    renderTopupPackages();
+                };
+                card.innerHTML = `
+                    <span class="text-[10px] font-cute text-amber-600 bg-amber-100 px-2 py-0.5 rounded-full">${pkg.tag}</span>
+                    <div class="text-xl font-bold font-cute text-gray-800">${pkg.coins + pkg.bonus} 🪙</div>
+                    <div class="text-xs text-gray-500 font-cute">ราคา ${pkg.price} บาท</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function confirmSimulatedTopup() {
+            const currentCoins = getWalletCoins();
+            const addedCoins = selectedTopupPkg.coins + selectedTopupPkg.bonus;
+            setWalletCoins(currentCoins + addedCoins);
+            confetti({ particleCount: 60, spread: 80, origin: { y: 0.6 } });
+            closeTopupModal();
+            showToast(`เติมสำเร็จ! ได้รับ ${addedCoins} เหรียญเรียบร้อยค่ะ 🪙`);
+        }
+
+        // Donation Modal Logic
+        function openDonateModal() {
+            renderStickerSelection();
+            document.getElementById('donateModal').classList.remove('hidden');
+        }
+
+        function closeDonateModal() {
+            document.getElementById('donateModal').classList.add('hidden');
+        }
+
+        function renderStickerSelection() {
+            const grid = document.getElementById('stickerSelectionGrid');
+            grid.innerHTML = '';
+
+            DONATION_STICKERS.forEach(stk => {
+                const card = document.createElement('div');
+                const isSelected = selectedSticker.id === stk.id;
+                card.className = `p-2.5 rounded-2xl border-2 cursor-pointer transition text-center space-y-1 ${
+                    isSelected ? 'border-brand-500 bg-brand-50 shadow-cute' : 'border-gray-200 hover:border-brand-300'
+                }`;
+                card.onclick = () => {
+                    selectedSticker = stk;
+                    document.getElementById('donateSubmitCoins').innerText = stk.coins;
+                    renderStickerSelection();
+                };
+                card.innerHTML = `
+                    <div class="text-3xl">${stk.icon}</div>
+                    <div class="text-xs font-cute font-bold text-gray-800 truncate">${stk.name}</div>
+                    <div class="text-[11px] font-cute text-amber-600 font-semibold">${stk.coins} 🪙</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function sendDonation() {
+            const coins = getWalletCoins();
+            if (coins < selectedSticker.coins) {
+                showToast(`เหรียญไม่พอค่ะ (ต้องการ ${selectedSticker.coins} เหรียญ)`, "⚠️");
+                closeDonateModal();
+                openTopupModal();
+                return;
+            }
+
+            const donorName = document.getElementById('donorNameInput').value.trim() || "นักอ่านใจดี";
+            const donorMsg = document.getElementById('donorMessageInput').value.trim() || selectedSticker.message;
+
+            setWalletCoins(coins - selectedSticker.coins);
+
+            saveNewDonation({
+                name: donorName,
+                sticker: selectedSticker.icon,
+                coins: selectedSticker.coins,
+                msg: donorMsg,
+                time: "เมื่อสักครู่"
+            });
+
+            confetti({ particleCount: 70, spread: 90, origin: { y: 0.5 } });
+            closeDonateModal();
+            showToast(`ส่งกำลังใจให้นักเขียนแล้ว ขอบคุณมากนะคะ 💖`);
+
+            // Clear inputs
+            document.getElementById('donorMessageInput').value = '';
+        }
+
+        // App Start
+        window.addEventListener('DOMContentLoaded', () => {
+            updateWalletUI();
+            renderHome();
+        });
+    </script>
+</body>
+</html>
