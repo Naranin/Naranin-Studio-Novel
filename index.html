@@ -9,7 +9,7 @@
     <!-- Google Fonts: Mali & Prompt & Sarabun -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,400;0,600;0,700;1,400&family=Prompt:wght@300;400;500;600&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,400;0,600;0,700;1,400&family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Canvas Confetti -->
@@ -50,12 +50,16 @@
             font-family: 'Prompt', sans-serif;
             background: linear-gradient(135deg, #F4FBF7 0%, #EBF8F2 50%, #F9FDFB 100%);
             background-attachment: fixed;
+            color: #000000;
         }
         .font-cute {
             font-family: 'Mali', cursive;
         }
         .reader-font {
             font-family: 'Sarabun', sans-serif;
+        }
+        p, span, div, h1, h2, h3, h4, h5, h6, input, textarea, select, button {
+            -webkit-font-smoothing: antialiased;
         }
         ::-webkit-scrollbar {
             width: 8px;
@@ -79,47 +83,47 @@
         }
     </style>
 </head>
-<body class="text-gray-800 antialiased min-h-screen flex flex-col selection:bg-brand-200 selection:text-brand-800">
+<body class="text-black antialiased min-h-screen flex flex-col selection:bg-brand-200 selection:text-black">
 
-    <!-- Navbar: Pastel Green with Bookshelf Button -->
-    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-brand-100 shadow-sm transition-all">
+    <!-- Navbar: Pastel Green with High-Contrast Text -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-100 shadow-sm transition-all">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-18 flex items-center justify-between py-3">
             <a href="#" onclick="showHomeView(); return false;" class="flex items-center gap-2.5 group">
                 <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-400 to-emerald-300 text-white flex items-center justify-center text-xl shadow-cute-green transform group-hover:rotate-6 transition duration-200">
                     🍀
                 </div>
                 <div>
-                    <h1 id="navSiteName" class="font-cute text-xl sm:text-2xl font-bold text-brand-700 tracking-tight flex items-center gap-1.5">
-                        Naranin Studio <span class="text-xs bg-brand-100 text-brand-700 px-2 py-0.5 rounded-full font-body font-normal">Official</span>
+                    <h1 id="navSiteName" class="font-cute text-xl sm:text-2xl font-bold text-black tracking-tight flex items-center gap-1.5">
+                        Naranin Studio <span class="text-xs bg-brand-100 text-black px-2.5 py-0.5 rounded-full font-body font-semibold border border-brand-200">Official</span>
                     </h1>
-                    <p class="text-xs text-brand-500 font-cute -mt-1 hidden sm:block">คลังนิยายรัก & การ์ตูนสุดสดใส โทนเขียวพาสเทล 🌿✨</p>
+                    <p class="text-xs text-black font-cute font-medium -mt-1 hidden sm:block">คลังนิยายรัก & การ์ตูนสดใส โทนเขียวพาสเทล 🌿✨</p>
                 </div>
             </a>
 
             <div class="flex items-center gap-2 sm:gap-3">
                 <!-- Bookshelf button -->
-                <button onclick="openBookshelfModal()" class="flex items-center gap-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-cute text-xs sm:text-sm px-3 py-1.5 rounded-full border border-emerald-200 active:scale-95 transition shadow-sm" title="ชั้นหนังสือของฉัน">
-                    <i class="fa-solid fa-bookmark text-emerald-600"></i>
-                    <span>ชั้นหนังสือ (<strong id="navBookshelfCount">0</strong>)</span>
+                <button onclick="openBookshelfModal()" class="flex items-center gap-1.5 bg-emerald-50 hover:bg-emerald-100 text-black font-cute text-xs sm:text-sm px-3.5 py-1.5 rounded-full border border-emerald-300 active:scale-95 transition shadow-sm font-semibold" title="ชั้นหนังสือของฉัน">
+                    <i class="fa-solid fa-bookmark text-emerald-700"></i>
+                    <span>ชั้นหนังสือ (<strong id="navBookshelfCount" class="text-black">0</strong>)</span>
                 </button>
 
                 <!-- Writer Studio Button -->
-                <button onclick="requestWriterStudioAccess()" class="flex items-center gap-1.5 bg-brand-50 hover:bg-brand-100 text-brand-700 font-cute text-xs sm:text-sm px-3 py-1.5 rounded-full border border-brand-200 active:scale-95 transition shadow-sm" title="ห้องนักเขียน / จัดการเรื่อง">
-                    <i class="fa-solid fa-feather-pointed text-brand-600"></i>
+                <button onclick="requestWriterStudioAccess()" class="flex items-center gap-1.5 bg-brand-50 hover:bg-brand-100 text-black font-cute text-xs sm:text-sm px-3.5 py-1.5 rounded-full border border-brand-300 active:scale-95 transition shadow-sm font-semibold" title="ห้องนักเขียน / จัดการเรื่อง">
+                    <i class="fa-solid fa-feather-pointed text-brand-700"></i>
                     <span>ห้องนักเขียน</span>
                 </button>
 
                 <!-- Coin Balance Pill -->
-                <div class="flex items-center bg-amber-50 border border-amber-200 rounded-full px-2.5 sm:px-3 py-1.5 shadow-sm">
-                    <span class="text-amber-500 text-sm sm:text-base mr-1">🪙</span>
-                    <span class="text-xs sm:text-sm font-semibold text-amber-800 mr-1.5 sm:mr-2" id="walletBalance">0</span>
-                    <button onclick="openTopupModal()" class="bg-amber-400 hover:bg-amber-500 active:scale-95 text-white text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 transition shadow-sm" title="เติมเหรียญ">
+                <div class="flex items-center bg-amber-50 border border-amber-300 rounded-full px-2.5 sm:px-3 py-1.5 shadow-sm">
+                    <span class="text-amber-600 text-sm sm:text-base mr-1">🪙</span>
+                    <span class="text-xs sm:text-sm font-bold text-black mr-1.5 sm:mr-2" id="walletBalance">0</span>
+                    <button onclick="openTopupModal()" class="bg-amber-400 hover:bg-amber-500 active:scale-95 text-black text-[11px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 transition shadow-sm" title="เติมเหรียญ">
                         <i class="fa-solid fa-plus text-[9px]"></i> เติม
                     </button>
                 </div>
 
                 <!-- Donate Button -->
-                <button onclick="openDonateModal()" class="hidden md:flex items-center gap-1.5 bg-gradient-to-r from-brand-500 to-emerald-500 hover:from-brand-600 hover:to-emerald-600 active:scale-95 text-white font-cute text-sm px-4 py-2 rounded-full shadow-cute-green transition duration-200">
+                <button onclick="openDonateModal()" class="hidden md:flex items-center gap-1.5 bg-gradient-to-r from-brand-500 to-emerald-500 hover:from-brand-600 hover:to-emerald-600 active:scale-95 text-white font-cute text-sm px-4 py-2 rounded-full shadow-cute-green transition duration-200 font-bold">
                     <i class="fa-solid fa-heart text-white animate-pulse"></i> โดเนต
                 </button>
             </div>
@@ -133,7 +137,7 @@
         <div id="homeView" class="space-y-10">
 
             <!-- Hero & Author Card -->
-            <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-50 via-emerald-50 to-teal-50/60 border-2 border-white/80 p-6 sm:p-8 shadow-cute-green">
+            <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-50 via-emerald-50 to-teal-50/60 border-2 border-brand-200 p-6 sm:p-8 shadow-cute-green">
                 <div class="absolute -right-8 -bottom-8 text-9xl text-brand-200/40 select-none pointer-events-none">🍀</div>
                 <div class="absolute right-1/4 -top-6 text-7xl text-brand-100/50 select-none pointer-events-none">✨</div>
 
@@ -150,37 +154,37 @@
 
                     <div class="text-center md:text-left space-y-2.5 flex-1">
                         <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
-                            <h2 id="authorName" class="text-2xl sm:text-3xl font-cute font-bold text-gray-800"></h2>
-                            <span class="bg-brand-500 text-white font-cute text-xs px-3 py-0.5 rounded-full shadow-sm">
+                            <h2 id="authorName" class="text-2xl sm:text-3xl font-cute font-bold text-black"></h2>
+                            <span class="bg-brand-500 text-white font-cute text-xs px-3 py-0.5 rounded-full shadow-sm font-semibold">
                                 นักเขียนประจำสตูดิโอ 🌿
                             </span>
                         </div>
-                        <p id="authorBio" class="text-gray-600 text-sm sm:text-base leading-relaxed max-w-2xl"></p>
+                        <p id="authorBio" class="text-black text-sm sm:text-base leading-relaxed max-w-2xl font-medium"></p>
 
                         <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-4 pt-2">
-                            <div class="bg-white/85 backdrop-blur-sm px-3.5 py-1.5 rounded-2xl border border-brand-100 flex items-center gap-2 shadow-sm">
-                                <span class="text-brand-500 text-sm"><i class="fa-solid fa-book-open"></i></span>
-                                <span class="text-xs text-gray-600">ผลงานรวม: <strong class="text-gray-800" id="totalNovelsCount">0</strong> เรื่อง</span>
+                            <div class="bg-white px-3.5 py-1.5 rounded-2xl border border-brand-200 flex items-center gap-2 shadow-sm">
+                                <span class="text-brand-600 text-sm"><i class="fa-solid fa-book-open"></i></span>
+                                <span class="text-xs text-black font-semibold">ผลงานรวม: <strong class="text-black" id="totalNovelsCount">0</strong> เรื่อง</span>
                             </div>
-                            <div class="bg-white/85 backdrop-blur-sm px-3.5 py-1.5 rounded-2xl border border-brand-100 flex items-center gap-2 shadow-sm">
-                                <span class="text-rose-400 text-sm"><i class="fa-solid fa-heart"></i></span>
-                                <span class="text-xs text-gray-600">หัวใจรวม: <strong class="text-gray-800" id="totalHeartsCount">0</strong></span>
+                            <div class="bg-white px-3.5 py-1.5 rounded-2xl border border-brand-200 flex items-center gap-2 shadow-sm">
+                                <span class="text-rose-500 text-sm"><i class="fa-solid fa-heart"></i></span>
+                                <span class="text-xs text-black font-semibold">หัวใจรวม: <strong class="text-black" id="totalHeartsCount">0</strong></span>
                             </div>
-                            <div class="bg-white/85 backdrop-blur-sm px-3.5 py-1.5 rounded-2xl border border-brand-100 flex items-center gap-2 shadow-sm">
-                                <span class="text-amber-500 text-sm"><i class="fa-solid fa-gift"></i></span>
-                                <span class="text-xs text-gray-600">โดเนตสะสม: <strong class="text-gray-800" id="totalDonationCoins">0</strong> เหรียญ</span>
+                            <div class="bg-white px-3.5 py-1.5 rounded-2xl border border-brand-200 flex items-center gap-2 shadow-sm">
+                                <span class="text-amber-600 text-sm"><i class="fa-solid fa-gift"></i></span>
+                                <span class="text-xs text-black font-semibold">โดเนตสะสม: <strong class="text-black" id="totalDonationCoins">0</strong> เหรียญ</span>
                             </div>
                         </div>
 
                         <div class="pt-3 flex flex-wrap items-center justify-center md:justify-start gap-3">
-                            <button onclick="openDonateModal()" class="bg-gradient-to-r from-brand-500 to-emerald-600 hover:opacity-90 text-white font-cute text-sm px-5 py-2.5 rounded-2xl shadow-cute-green active:scale-95 transition flex items-center gap-2">
+                            <button onclick="openDonateModal()" class="bg-gradient-to-r from-brand-500 to-emerald-600 hover:opacity-90 text-white font-cute text-sm px-5 py-2.5 rounded-2xl shadow-cute-green active:scale-95 transition flex items-center gap-2 font-bold">
                                 <i class="fa-solid fa-heart"></i> มอบของขวัญ & โดเนตให้นักเขียน
                             </button>
-                            <button onclick="openBookshelfModal()" class="bg-white hover:bg-emerald-50 text-emerald-800 font-cute text-sm px-4 py-2.5 rounded-2xl border border-emerald-200 active:scale-95 transition flex items-center gap-2 shadow-sm">
-                                <i class="fa-solid fa-bookmark text-emerald-600"></i> ชั้นหนังสือของฉัน
+                            <button onclick="openBookshelfModal()" class="bg-white hover:bg-emerald-50 text-black font-cute text-sm px-4 py-2.5 rounded-2xl border border-brand-300 active:scale-95 transition flex items-center gap-2 shadow-sm font-semibold">
+                                <i class="fa-solid fa-bookmark text-emerald-700"></i> ชั้นหนังสือของฉัน
                             </button>
-                            <button onclick="requestWriterStudioAccess()" class="bg-brand-50 hover:bg-brand-100 text-brand-700 font-cute text-sm px-4 py-2.5 rounded-2xl border border-brand-200 active:scale-95 transition flex items-center gap-2 shadow-sm">
-                                <i class="fa-solid fa-feather-pointed text-brand-600"></i> ห้องนักเขียน ✨
+                            <button onclick="requestWriterStudioAccess()" class="bg-brand-50 hover:bg-brand-100 text-black font-cute text-sm px-4 py-2.5 rounded-2xl border border-brand-300 active:scale-95 transition flex items-center gap-2 shadow-sm font-semibold">
+                                <i class="fa-solid fa-feather-pointed text-brand-700"></i> ห้องนักเขียน ✨
                             </button>
                         </div>
                     </div>
@@ -191,24 +195,24 @@
             <section class="space-y-6">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                        <h3 class="text-2xl font-cute font-bold text-gray-800 flex items-center gap-2">
+                        <h3 class="text-2xl font-cute font-bold text-black flex items-center gap-2">
                             <span>📚 คลังผลงานทั้งหมด</span>
-                            <span class="text-xs font-normal bg-brand-100 text-brand-700 px-2.5 py-0.5 rounded-full">อัปเดตล่าสุด</span>
+                            <span class="text-xs font-semibold bg-brand-100 text-black px-2.5 py-0.5 rounded-full border border-brand-200">อัปเดตล่าสุด</span>
                         </h3>
-                        <p class="text-xs sm:text-sm text-gray-500">มีทั้งนิยายบรรยาย การ์ตูนภาพ AI และฉบับ E-book (PDF + ePub) จบสมบูรณ์ค่ะ</p>
+                        <p class="text-xs sm:text-sm text-black font-medium">มีทั้งนิยายบรรยาย การ์ตูนภาพ AI และฉบับ E-book (PDF + ePub) จบสมบูรณ์ค่ะ</p>
                     </div>
 
                     <div class="flex items-center gap-1.5 bg-white p-1 rounded-2xl border border-brand-200 shadow-sm self-start sm:self-auto">
-                        <button onclick="filterCatalog('all')" id="tabFilterAll" class="px-3.5 py-1.5 rounded-xl font-cute text-xs transition bg-brand-500 text-white font-semibold shadow-sm">
+                        <button onclick="filterCatalog('all')" id="tabFilterAll" class="px-3.5 py-1.5 rounded-xl font-cute text-xs transition bg-brand-500 text-white font-bold shadow-sm">
                             🌟 ทั้งหมด
                         </button>
-                        <button onclick="filterCatalog('novel')" id="tabFilterNovel" class="px-3.5 py-1.5 rounded-xl font-cute text-xs transition text-gray-600 hover:bg-brand-50">
+                        <button onclick="filterCatalog('novel')" id="tabFilterNovel" class="px-3.5 py-1.5 rounded-xl font-cute text-xs transition text-black font-semibold hover:bg-brand-50">
                             📖 นิยายบรรยาย
                         </button>
-                        <button onclick="filterCatalog('comic')" id="tabFilterComic" class="px-3.5 py-1.5 rounded-xl font-cute text-xs transition text-gray-600 hover:bg-brand-50">
+                        <button onclick="filterCatalog('comic')" id="tabFilterComic" class="px-3.5 py-1.5 rounded-xl font-cute text-xs transition text-black font-semibold hover:bg-brand-50">
                             🎨 การ์ตูน (ภาพ AI)
                         </button>
-                        <button onclick="filterCatalog('ebook')" id="tabFilterEbook" class="px-3.5 py-1.5 rounded-xl font-cute text-xs transition text-gray-600 hover:bg-brand-50">
+                        <button onclick="filterCatalog('ebook')" id="tabFilterEbook" class="px-3.5 py-1.5 rounded-xl font-cute text-xs transition text-black font-semibold hover:bg-brand-50">
                             📑 ร้าน E-book
                         </button>
                     </div>
@@ -218,12 +222,12 @@
             </section>
 
             <!-- Donation Board -->
-            <section class="rounded-3xl bg-white/90 backdrop-blur-sm border-2 border-brand-100 p-6 shadow-sm space-y-4">
+            <section class="rounded-3xl bg-white/95 border-2 border-brand-100 p-6 shadow-sm space-y-4">
                 <div class="flex items-center justify-between border-b border-brand-50 pb-3">
-                    <h4 class="font-cute font-bold text-lg text-brand-700 flex items-center gap-2">
+                    <h4 class="font-cute font-bold text-lg text-black flex items-center gap-2">
                         <span>💖 กระดานผู้สนับสนุนใจดี (Donation Hall of Fame)</span>
                     </h4>
-                    <button onclick="openDonateModal()" class="text-xs font-cute text-brand-600 hover:text-brand-800 underline">
+                    <button onclick="openDonateModal()" class="text-xs font-cute text-black font-semibold hover:underline">
                         + ส่งกำลังใจบ้าง
                     </button>
                 </div>
@@ -239,93 +243,93 @@
                         ✍️
                     </div>
                     <div>
-                        <h2 class="text-xl font-cute font-bold text-gray-800 flex items-center gap-2">
+                        <h2 class="text-xl font-cute font-bold text-black flex items-center gap-2">
                             ห้องนักเขียน (Writer Studio)
-                            <span class="text-[10px] bg-brand-100 text-brand-700 px-2 py-0.5 rounded-full font-body font-semibold">Author Studio</span>
+                            <span class="text-[10px] bg-brand-100 text-black px-2 py-0.5 rounded-full font-body font-bold border border-brand-200">Author Studio</span>
                         </h2>
-                        <p class="text-xs text-gray-400">สร้างนิยายเรื่องใหม่ ลงการ์ตูนภาพ AI ตั้งค่า E-book ติดเหรียญ และแก้ไขได้จากหน้านี้โดยตรง</p>
+                        <p class="text-xs text-black font-medium">สร้างนิยายเรื่องใหม่ ลงการ์ตูนภาพ AI ตั้งค่า E-book ติดเหรียญ และแก้ไขได้จากหน้านี้โดยตรง</p>
                     </div>
                 </div>
 
                 <div class="flex flex-wrap items-center gap-2">
-                    <button onclick="openCreateNovelModal()" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-cute text-xs sm:text-sm px-4 py-2 rounded-2xl shadow-sm transition flex items-center gap-1.5">
+                    <button onclick="openCreateNovelModal()" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-cute text-xs sm:text-sm px-4 py-2 rounded-2xl shadow-sm transition flex items-center gap-1.5 font-bold">
                         <i class="fa-solid fa-plus"></i> + เพิ่มเรื่องใหม่
                     </button>
-                    <button onclick="openGitHubSyncModal()" class="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-cute text-xs sm:text-sm px-4 py-2 rounded-2xl shadow-sm transition flex items-center gap-1.5" title="ส่งข้อมูลขึ้น GitHub Pages อัตโนมัติ">
+                    <button onclick="openGitHubSyncModal()" class="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-cute text-xs sm:text-sm px-4 py-2 rounded-2xl shadow-sm transition flex items-center gap-1.5 font-bold" title="ส่งข้อมูลขึ้น GitHub Pages อัตโนมัติ">
                         <i class="fa-solid fa-cloud-arrow-up"></i> เผยแพร่ออนไลน์ (GitHub)
                     </button>
-                    <button onclick="downloadNovelsDataBackup()" class="bg-amber-100 hover:bg-amber-200 text-amber-900 font-cute text-xs sm:text-sm px-3.5 py-2 rounded-2xl border border-amber-300 transition flex items-center gap-1.5" title="ดาวน์โหลดไฟล์สำรอง">
+                    <button onclick="downloadNovelsDataBackup()" class="bg-amber-100 hover:bg-amber-200 text-black font-cute text-xs sm:text-sm px-3.5 py-2 rounded-2xl border border-amber-300 transition flex items-center gap-1.5 font-bold" title="ดาวน์โหลดไฟล์สำรอง">
                         <i class="fa-solid fa-download"></i> สำรองไฟล์
                     </button>
-                    <button onclick="showHomeView()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-cute text-xs sm:text-sm px-3.5 py-2 rounded-2xl transition">
+                    <button onclick="showHomeView()" class="bg-gray-100 hover:bg-gray-200 text-black font-cute text-xs sm:text-sm px-3.5 py-2 rounded-2xl transition font-semibold">
                         <i class="fa-solid fa-arrow-left"></i> กลับหน้ารวม
                     </button>
                 </div>
             </div>
 
             <!-- Profile & Bangkok Bank & PIN Settings -->
-            <div class="bg-white rounded-3xl border-2 border-brand-100 p-5 space-y-5 shadow-sm">
-                <div class="flex items-center justify-between border-b border-brand-50 pb-3">
-                    <h3 class="text-sm font-cute font-bold text-gray-800 flex items-center gap-2">
-                        <span class="text-brand-500">⚙️</span> ข้อมูลนักเขียน, บัญชีธนาคารกรุงเทพ & รหัส PIN
+            <div class="bg-white rounded-3xl border-2 border-brand-200 p-5 space-y-5 shadow-sm">
+                <div class="flex items-center justify-between border-b border-brand-100 pb-3">
+                    <h3 class="text-sm font-cute font-bold text-black flex items-center gap-2">
+                        <span class="text-brand-600">⚙️</span> ข้อมูลนักเขียน, บัญชีธนาคารกรุงเทพ & รหัส PIN
                     </h3>
-                    <button onclick="saveAuthorProfileFromUI()" class="text-xs font-cute bg-brand-500 hover:bg-brand-600 text-white px-4 py-1.5 rounded-xl shadow-sm transition">
+                    <button onclick="saveAuthorProfileFromUI()" class="text-xs font-cute bg-brand-500 hover:bg-brand-600 text-white px-4 py-1.5 rounded-xl shadow-sm transition font-bold">
                         บันทึกการตั้งค่าทั้งหมด
                     </button>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
                     <div>
-                        <label class="block text-gray-700 mb-1 font-cute font-semibold">นามปากกานักเขียน:</label>
-                        <input type="text" id="adminAuthorName" class="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white font-cute text-sm">
+                        <label class="block text-black mb-1 font-cute font-bold">นามปากกานักเขียน:</label>
+                        <input type="text" id="adminAuthorName" class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-white font-cute text-sm text-black font-semibold">
                     </div>
                     <div>
-                        <label class="block text-gray-700 mb-1 font-cute font-semibold">ธนาคารรับเงินโอน/โดเนต:</label>
-                        <input type="text" id="adminBankName" value="ธนาคารกรุงเทพ (Bangkok Bank)" class="w-full px-3 py-2 rounded-xl border border-gray-200 bg-gray-50 text-gray-700 font-cute text-xs" readonly>
+                        <label class="block text-black mb-1 font-cute font-bold">ธนาคารรับเงินโอน/โดเนต:</label>
+                        <input type="text" id="adminBankName" value="ธนาคารกรุงเทพ (Bangkok Bank)" class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-gray-50 text-black font-cute text-xs font-bold" readonly>
                     </div>
                     <div>
-                        <label class="block text-gray-700 mb-1 font-cute font-semibold">เลขที่บัญชีธนาคารกรุงเทพ:</label>
-                        <input type="text" id="adminBankAccountNumber" placeholder="เช่น 123-4-56789-0" class="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white font-mono text-xs">
+                        <label class="block text-black mb-1 font-cute font-bold">เลขที่บัญชีธนาคารกรุงเทพ:</label>
+                        <input type="text" id="adminBankAccountNumber" placeholder="เช่น 123-4-56789-0" class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-white font-mono text-xs text-black font-bold">
                     </div>
                     <div>
-                        <label class="block text-gray-700 mb-1 font-cute font-semibold">ชื่อบัญชีธนาคารกรุงเทพ:</label>
-                        <input type="text" id="adminBankAccountName" placeholder="เช่น น.ส. นารานินทร์" class="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white font-cute text-xs">
+                        <label class="block text-black mb-1 font-cute font-bold">ชื่อบัญชีธนาคารกรุงเทพ:</label>
+                        <input type="text" id="adminBankAccountName" placeholder="เช่น น.ส. นารานินทร์" class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-white font-cute text-xs text-black font-bold">
                     </div>
                     <div>
-                        <label class="block text-gray-700 mb-1 font-cute font-semibold">สแกนโค้ด (QR Code รับเงิน):</label>
+                        <label class="block text-black mb-1 font-cute font-bold">สแกนโค้ด (QR Code รับเงิน):</label>
                         <div class="flex items-center gap-2">
                             <input type="file" id="adminQrFileInput" accept="image/*" class="hidden" onchange="handleQrCodeUpload(event)">
-                            <button type="button" onclick="document.getElementById('adminQrFileInput').click()" class="bg-brand-50 hover:bg-brand-100 border border-brand-200 text-brand-700 px-3 py-2 rounded-xl font-cute text-xs flex items-center gap-1.5 transition">
-                                <i class="fa-solid fa-qrcode"></i> อัปโหลดรูป QR จากเครื่อง
+                            <button type="button" onclick="document.getElementById('adminQrFileInput').click()" class="bg-brand-50 hover:bg-brand-100 border border-brand-300 text-black font-bold px-3 py-2 rounded-xl font-cute text-xs flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-qrcode text-brand-700"></i> อัปโหลดรูป QR จากเครื่อง
                             </button>
                         </div>
-                        <input type="text" id="adminBankQrCode" placeholder="หรือวาง URL รูป QR Code" class="w-full mt-1.5 px-3 py-1 rounded-xl border border-gray-200 bg-white text-[11px]">
+                        <input type="text" id="adminBankQrCode" placeholder="หรือวาง URL รูป QR Code" class="w-full mt-1.5 px-3 py-1.5 rounded-xl border border-gray-300 bg-white text-[11px] text-black">
                     </div>
                     <div>
-                        <label class="block text-gray-700 mb-1 font-cute font-semibold">รหัส PIN เข้าห้องนักเขียน:</label>
-                        <input type="text" id="adminWriterPin" maxlength="6" class="w-full px-3 py-2 rounded-xl border border-brand-200 bg-brand-50/40 text-center tracking-widest font-mono text-sm font-bold text-brand-700">
-                        <span class="text-[10px] text-gray-400 font-cute mt-1 block">สามารถแก้ไขรหัส PIN ตรงนี้ได้ตลอดเวลาค่ะ</span>
+                        <label class="block text-black mb-1 font-cute font-bold">รหัส PIN เข้าห้องนักเขียน:</label>
+                        <input type="text" id="adminWriterPin" maxlength="6" class="w-full px-3 py-2 rounded-xl border border-brand-300 bg-brand-50/40 text-center tracking-widest font-mono text-sm font-bold text-black">
+                        <span class="text-[10px] text-black font-cute mt-1 block font-medium">สามารถแก้ไขรหัส PIN ตรงนี้ได้ตลอดเวลาค่ะ</span>
                     </div>
                     <div class="sm:col-span-2">
-                        <label class="block text-gray-700 mb-1 font-cute font-semibold">ข้อความแนะนำตัวนักเขียน:</label>
-                        <input type="text" id="adminAuthorBio" class="w-full px-3 py-2 rounded-xl border border-gray-200 bg-white font-cute text-xs">
+                        <label class="block text-black mb-1 font-cute font-bold">ข้อความแนะนำตัวนักเขียน:</label>
+                        <input type="text" id="adminAuthorBio" class="w-full px-3 py-2 rounded-xl border border-gray-300 bg-white font-cute text-xs text-black font-medium">
                     </div>
                     <div>
-                        <label class="block text-gray-700 mb-1 font-cute font-semibold">รูปโปรไฟล์นักเขียน:</label>
+                        <label class="block text-black mb-1 font-cute font-bold">รูปโปรไฟล์นักเขียน:</label>
                         <div class="flex items-center gap-2">
                             <input type="file" id="adminProfileFileInput" accept="image/*" class="hidden" onchange="handleProfileImageUpload(event)">
-                            <button type="button" onclick="document.getElementById('adminProfileFileInput').click()" class="bg-brand-50 hover:bg-brand-100 border border-brand-200 text-brand-700 px-3 py-2 rounded-xl font-cute text-xs flex items-center gap-1.5 transition">
-                                <i class="fa-solid fa-image"></i> เลือกรูปจากเครื่อง
+                            <button type="button" onclick="document.getElementById('adminProfileFileInput').click()" class="bg-brand-50 hover:bg-brand-100 border border-brand-300 text-black font-bold px-3 py-2 rounded-xl font-cute text-xs flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-image text-brand-700"></i> เลือกรูปจากเครื่อง
                             </button>
                         </div>
-                        <input type="text" id="adminAuthorAvatar" placeholder="URL รูปโปรไฟล์" class="w-full mt-1.5 px-3 py-1 rounded-xl border border-gray-200 bg-white text-[11px]">
+                        <input type="text" id="adminAuthorAvatar" placeholder="URL รูปโปรไฟล์" class="w-full mt-1.5 px-3 py-1.5 rounded-xl border border-gray-300 bg-white text-[11px] text-black">
                     </div>
                 </div>
             </div>
 
             <!-- Novels List in Admin -->
             <div class="space-y-4">
-                <h3 class="text-lg font-cute font-bold text-gray-800 flex items-center justify-between">
+                <h3 class="text-lg font-cute font-bold text-black flex items-center justify-between">
                     <span>จัดการผลงานทั้งหมด (<span id="adminNovelsCount">0</span> เรื่อง)</span>
                 </h3>
                 <div id="adminNovelsList" class="space-y-4"></div>
@@ -334,152 +338,148 @@
 
         <!-- ================= NOVEL DETAIL VIEW ================= -->
         <div id="novelDetailView" class="hidden space-y-8">
-            <button onclick="showHomeView()" class="inline-flex items-center gap-2 text-sm font-cute text-brand-700 hover:text-brand-800 bg-brand-50 hover:bg-brand-100 px-4 py-2 rounded-2xl transition">
+            <button onclick="showHomeView()" class="inline-flex items-center gap-2 text-sm font-cute text-black font-bold bg-brand-50 hover:bg-brand-100 px-4 py-2 rounded-2xl border border-brand-200 transition">
                 <i class="fa-solid fa-arrow-left"></i> กลับหน้ารวมผลงาน
             </button>
 
-            <div class="bg-white rounded-3xl border-2 border-brand-100 p-6 sm:p-8 shadow-cute-green flex flex-col md:flex-row gap-6">
+            <div class="bg-white rounded-3xl border-2 border-brand-200 p-6 sm:p-8 shadow-cute-green flex flex-col md:flex-row gap-6">
                 <div class="w-full md:w-56 h-72 rounded-2xl overflow-hidden shadow-md flex-shrink-0 border-2 border-brand-100 bg-brand-50">
                     <img id="detailCover" src="" alt="Cover" class="w-full h-full object-cover">
                 </div>
                 <div class="flex-1 space-y-3">
                     <div class="flex flex-wrap items-center gap-2">
-                        <span id="detailType" class="text-xs font-cute bg-teal-100 text-teal-800 px-3 py-1 rounded-full font-bold"></span>
-                        <span id="detailCategory" class="text-xs font-cute bg-brand-100 text-brand-700 px-3 py-1 rounded-full"></span>
+                        <span id="detailType" class="text-xs font-cute bg-teal-100 text-black px-3 py-1 rounded-full font-bold border border-teal-200"></span>
+                        <span id="detailCategory" class="text-xs font-cute bg-brand-100 text-black px-3 py-1 rounded-full font-bold border border-brand-200"></span>
                         <span id="detailStatus" class="text-xs font-cute px-3 py-1 rounded-full font-bold"></span>
-                        <span class="text-xs font-cute bg-amber-50 text-amber-800 border border-amber-200 px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                            <i class="fa-solid fa-shield-halved text-amber-500"></i> ลิขสิทธิ์ พ.ร.บ. 2537
+                        <span class="text-xs font-cute bg-amber-50 text-black border border-amber-300 px-2.5 py-0.5 rounded-full flex items-center gap-1 font-semibold">
+                            <i class="fa-solid fa-shield-halved text-amber-600"></i> ลิขสิทธิ์ พ.ร.บ. 2537
                         </span>
                     </div>
-                    <h2 id="detailTitle" class="text-2xl sm:text-3xl font-cute font-bold text-gray-800"></h2>
-                    <p id="detailTagline" class="text-brand-600 font-cute text-sm"></p>
-                    <p id="detailSynopsis" class="text-gray-600 text-sm sm:text-base leading-relaxed bg-brand-50/50 p-4 rounded-2xl border border-brand-100"></p>
+                    <h2 id="detailTitle" class="text-2xl sm:text-3xl font-cute font-bold text-black"></h2>
+                    <p id="detailTagline" class="text-black font-cute text-sm font-semibold"></p>
+                    <p id="detailSynopsis" class="text-black text-sm sm:text-base leading-relaxed bg-brand-50/50 p-4 rounded-2xl border border-brand-100 font-normal"></p>
 
                     <!-- Interactive Action Bar: Hearts, Bookshelf, E-book -->
                     <div class="flex flex-wrap items-center gap-3 pt-2">
-                        <!-- Views -->
-                        <span class="text-xs text-gray-500"><i class="fa-solid fa-eye text-brand-500 mr-1"></i> <span id="detailViews">0</span> วิว</span>
+                        <span class="text-xs text-black font-semibold"><i class="fa-solid fa-eye text-brand-600 mr-1"></i> <span id="detailViews">0</span> วิว</span>
 
-                        <!-- Hearts (1 User 1 Like) -->
-                        <button onclick="toggleNovelHeartFromDetail()" id="detailHeartBtn" class="text-xs font-cute px-3.5 py-1.5 rounded-full border transition active:scale-95 flex items-center gap-1.5">
+                        <button onclick="toggleNovelHeartFromDetail()" id="detailHeartBtn" class="text-xs font-cute px-3.5 py-1.5 rounded-full border transition active:scale-95 flex items-center gap-1.5 font-bold">
                             <i class="fa-regular fa-heart"></i> <span id="detailHearts">0</span> หัวใจ
                         </button>
 
-                        <!-- Bookshelf Button -->
-                        <button onclick="toggleBookshelfFromDetail()" id="detailBookshelfBtn" class="text-xs font-cute px-3.5 py-1.5 rounded-full border transition active:scale-95 flex items-center gap-1.5">
+                        <button onclick="toggleBookshelfFromDetail()" id="detailBookshelfBtn" class="text-xs font-cute px-3.5 py-1.5 rounded-full border transition active:scale-95 flex items-center gap-1.5 font-bold">
                             <i class="fa-regular fa-bookmark"></i> <span>เพิ่มเข้าชั้น</span>
                         </button>
 
-                        <!-- E-Book Purchase Button (If Available) -->
-                        <div id="detailEbookContainer">
-                            <!-- Injected dynamically -->
-                        </div>
+                        <div id="detailEbookContainer"></div>
                     </div>
                 </div>
             </div>
 
             <!-- Chapter List -->
             <div class="bg-white rounded-3xl border-2 border-brand-100 p-6 shadow-sm space-y-4">
-                <h3 class="text-xl font-cute font-bold text-gray-800 flex items-center justify-between">
+                <h3 class="text-xl font-cute font-bold text-black flex items-center justify-between">
                     <span>📖 สารบัญตอนทั้งหมด (<span id="detailChapterCount">0</span> ตอน)</span>
-                    <span class="text-xs font-normal text-gray-400">คลิกที่ตอนเพื่อเริ่มอ่าน/รับชม</span>
+                    <span class="text-xs font-semibold text-black">คลิกที่ตอนเพื่อเริ่มอ่าน/รับชม</span>
                 </h3>
-                <div id="chapterListContainer" class="divide-y divide-brand-50"></div>
+                <div id="chapterListContainer" class="divide-y divide-brand-100"></div>
             </div>
         </div>
 
-        <!-- ================= READER VIEW ================= -->
+        <!-- ================= READER VIEW (ตัวหนังสือสีดำชัดเจน สบายตา) ================= -->
         <div id="readerView" class="hidden space-y-6">
-            <div class="sticky top-20 z-30 bg-white/95 backdrop-blur-md rounded-2xl border border-brand-100 p-3 shadow-sm flex flex-wrap items-center justify-between gap-3">
-                <button onclick="backToNovelDetail()" class="text-xs sm:text-sm font-cute text-brand-700 hover:text-brand-800 bg-brand-50 px-3 py-1.5 rounded-xl transition flex items-center gap-1.5">
+            <div class="sticky top-20 z-30 bg-white/95 backdrop-blur-md rounded-2xl border border-brand-200 p-3 shadow-sm flex flex-wrap items-center justify-between gap-3">
+                <button onclick="backToNovelDetail()" class="text-xs sm:text-sm font-cute text-black font-bold bg-brand-50 hover:bg-brand-100 px-3.5 py-1.5 rounded-xl border border-brand-200 transition flex items-center gap-1.5">
                     <i class="fa-solid fa-list-ul"></i> สารบัญ
                 </button>
 
-                <!-- Reader Background Controls: กลางวัน / สบายตา / กลางคืน + Font Size -->
+                <!-- Reader Background Controls -->
                 <div class="flex flex-wrap items-center gap-2.5">
-                    <div class="flex items-center bg-gray-100 rounded-xl p-1 gap-1">
-                        <button onclick="setReaderTheme('day')" id="btnThemeDay" class="px-2.5 py-1 rounded-lg text-xs font-cute transition flex items-center gap-1 bg-white text-gray-800 shadow-sm font-semibold" title="พื้นหลังสีขาว สว่าง คมชัด">
+                    <div class="flex items-center bg-gray-100 rounded-xl p-1 gap-1 border border-gray-200">
+                        <button onclick="setReaderTheme('day')" id="btnThemeDay" class="px-2.5 py-1 rounded-lg text-xs font-cute transition flex items-center gap-1 bg-white text-black shadow-sm font-bold border border-gray-200" title="พื้นหลังสีขาว สว่าง คมชัด">
                             ☀️ กลางวัน
                         </button>
-                        <button onclick="setReaderTheme('eyecare')" id="btnThemeEyecare" class="px-2.5 py-1 rounded-lg text-xs font-cute transition flex items-center gap-1 text-gray-600 hover:text-brand-700" title="พื้นหลังสีมินต์นวลตา ถนอมสายตา">
+                        <button onclick="setReaderTheme('eyecare')" id="btnThemeEyecare" class="px-2.5 py-1 rounded-lg text-xs font-cute transition flex items-center gap-1 text-black hover:text-brand-800 font-semibold" title="พื้นหลังสีมินต์นวลตา ถนอมสายตา">
                             🍃 สบายตา
                         </button>
-                        <button onclick="setReaderTheme('night')" id="btnThemeNight" class="px-2.5 py-1 rounded-lg text-xs font-cute transition flex items-center gap-1 text-gray-600 hover:text-brand-700" title="พื้นหลังสีมืด สำหรับอ่านกลางคืน">
+                        <button onclick="setReaderTheme('night')" id="btnThemeNight" class="px-2.5 py-1 rounded-lg text-xs font-cute transition flex items-center gap-1 text-black hover:text-brand-800 font-semibold" title="พื้นหลังสีมืด สำหรับอ่านกลางคืน">
                             🌙 กลางคืน
                         </button>
                     </div>
 
-                    <div id="textControlsBar" class="flex items-center bg-gray-100 rounded-xl p-0.5">
-                        <button onclick="changeFontSize(-2)" class="px-2.5 py-1 text-xs font-bold text-gray-700 hover:bg-white rounded-lg transition" title="ลดขนาดอักษร">A-</button>
-                        <span id="fontSizeDisplay" class="px-2 text-xs font-medium text-gray-500">18px</span>
-                        <button onclick="changeFontSize(2)" class="px-2.5 py-1 text-xs font-bold text-gray-700 hover:bg-white rounded-lg transition" title="เพิ่มขนาดอักษร">A+</button>
+                    <div id="textControlsBar" class="flex items-center bg-gray-100 rounded-xl p-0.5 border border-gray-200">
+                        <button onclick="changeFontSize(-2)" class="px-2.5 py-1 text-xs font-bold text-black hover:bg-white rounded-lg transition" title="ลดขนาดอักษร">A-</button>
+                        <span id="fontSizeDisplay" class="px-2 text-xs font-bold text-black">18px</span>
+                        <button onclick="changeFontSize(2)" class="px-2.5 py-1 text-xs font-bold text-black hover:bg-white rounded-lg transition" title="เพิ่มขนาดอักษร">A+</button>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-2">
-                    <button id="prevChapterBtn" onclick="navigateChapter(-1)" class="text-xs font-cute bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-xl transition disabled:opacity-40">
+                    <button id="prevChapterBtn" onclick="navigateChapter(-1)" class="text-xs font-cute bg-gray-100 hover:bg-gray-200 text-black font-semibold px-3 py-1.5 rounded-xl transition disabled:opacity-40 border border-gray-200">
                         <i class="fa-solid fa-chevron-left mr-1"></i> ก่อนหน้า
                     </button>
-                    <button id="nextChapterBtn" onclick="navigateChapter(1)" class="text-xs font-cute bg-brand-500 hover:bg-brand-600 text-white px-3 py-1.5 rounded-xl transition shadow-sm disabled:opacity-40">
+                    <button id="nextChapterBtn" onclick="navigateChapter(1)" class="text-xs font-cute bg-brand-500 hover:bg-brand-600 text-white font-bold px-3 py-1.5 rounded-xl transition shadow-sm disabled:opacity-40">
                         ถัดไป <i class="fa-solid fa-chevron-right mr-1"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Reading Canvas -->
-            <article id="readerPaper" class="rounded-3xl border border-gray-200 p-4 sm:p-10 shadow-sm transition-colors duration-200 min-h-[60vh] max-w-3xl mx-auto space-y-6 bg-[#FFFFFF] text-gray-800">
-                <div class="text-center space-y-2 border-b border-gray-200/60 pb-6" id="readerHeaderBox">
-                    <p id="readerNovelTitle" class="text-xs sm:text-sm font-cute text-brand-600 font-semibold"></p>
-                    <h2 id="readerChapterTitle" class="text-2xl sm:text-3xl font-cute font-bold text-gray-800"></h2>
-                    <div class="flex items-center justify-center gap-2 text-xs text-gray-400">
+            <!-- Reading Canvas (Pure Black Text) -->
+            <article id="readerPaper" class="rounded-3xl border border-gray-300 p-4 sm:p-10 shadow-sm transition-colors duration-200 min-h-[60vh] max-w-3xl mx-auto space-y-6 bg-[#FFFFFF] text-black">
+                <div class="text-center space-y-2 border-b border-gray-200 pb-6" id="readerHeaderBox">
+                    <p id="readerNovelTitle" class="text-xs sm:text-sm font-cute text-black font-bold"></p>
+                    <h2 id="readerChapterTitle" class="text-2xl sm:text-3xl font-cute font-bold text-black"></h2>
+                    <div class="flex items-center justify-center gap-2 text-xs text-black font-medium">
                         <span id="readerChapterDate"></span>
                         <span>•</span>
-                        <span class="text-emerald-700 font-cute">🛡️ ลิขสิทธิ์ถูกต้องตาม พ.ร.บ. 2537</span>
+                        <span class="text-black font-cute font-semibold">🛡️ ลิขสิทธิ์ถูกต้องตาม พ.ร.บ. 2537</span>
                     </div>
                 </div>
 
                 <div id="readerComicPanels" class="space-y-4 max-w-2xl mx-auto"></div>
-                <div id="readerContentArea" class="reader-font leading-relaxed whitespace-pre-line text-lg tracking-wide space-y-4"></div>
+                
+                <!-- Text Story Content Area with Pure Crisp Black Text -->
+                <div id="readerContentArea" class="reader-font leading-loose whitespace-pre-line text-lg tracking-wide space-y-4 text-black font-normal selection:bg-brand-200"></div>
 
                 <!-- Locked Overlay -->
-                <div id="lockedOverlay" class="hidden text-center py-10 px-4 space-y-5 bg-gradient-to-b from-transparent via-brand-50/60 to-brand-100/70 rounded-3xl border-2 border-dashed border-brand-200">
-                    <div class="w-16 h-16 bg-amber-100 text-amber-500 rounded-full flex items-center justify-center text-2xl mx-auto shadow-inner animate-bounce">
+                <div id="lockedOverlay" class="hidden text-center py-10 px-4 space-y-5 bg-gradient-to-b from-transparent via-brand-50/70 to-brand-100/80 rounded-3xl border-2 border-dashed border-brand-300">
+                    <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-2xl mx-auto shadow-inner animate-bounce">
                         🔒
                     </div>
                     <div class="space-y-1">
-                        <h4 class="text-xl font-cute font-bold text-gray-800">ตอนนี้เป็นตอนพิเศษ (ติดเหรียญ)</h4>
-                        <p class="text-xs sm:text-sm text-gray-600">ร่วมสนับสนุนนักเขียนเพียง <strong id="lockedCoinPrice" class="text-amber-600 text-lg">0</strong> เหรียญ เพื่ออ่านตอนนี้อย่างจุใจ 🍀</p>
+                        <h4 class="text-xl font-cute font-bold text-black">ตอนนี้เป็นตอนพิเศษ (ติดเหรียญ)</h4>
+                        <p class="text-xs sm:text-sm text-black font-medium">ร่วมสนับสนุนนักเขียนเพียง <strong id="lockedCoinPrice" class="text-black text-lg font-bold">0</strong> เหรียญ เพื่ออ่านตอนนี้อย่างจุใจ 🍀</p>
                     </div>
 
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-                        <button onclick="unlockCurrentChapter()" class="w-full sm:w-auto bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-white font-cute font-bold px-6 py-3 rounded-2xl shadow-cute-green active:scale-95 transition flex items-center justify-center gap-2">
+                        <button onclick="unlockCurrentChapter()" class="w-full sm:w-auto bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-black font-cute font-bold px-6 py-3 rounded-2xl shadow-cute-green active:scale-95 transition flex items-center justify-center gap-2">
                             <span>🪙 ปลดล็อกตอนนี้</span> (<span id="btnUnlockCoinPrice">0</span> เหรียญ)
                         </button>
-                        <button onclick="openTopupModal()" class="w-full sm:w-auto bg-white hover:bg-gray-50 text-amber-700 font-cute px-5 py-3 rounded-2xl border border-amber-200 transition">
+                        <button onclick="openTopupModal()" class="w-full sm:w-auto bg-white hover:bg-gray-50 text-black font-cute font-semibold px-5 py-3 rounded-2xl border border-amber-300 transition">
                             เติมเหรียญเพิ่ม
                         </button>
                     </div>
-                    <p class="text-[11px] text-gray-400">เมื่อปลดล็อกแล้วจะสามารถกลับมาอ่านซ้ำได้ตลอดเวลาบนอุปกรณ์นี้ค่ะ</p>
+                    <p class="text-[11px] text-black font-medium">เมื่อปลดล็อกแล้วจะสามารถกลับมาอ่านซ้ำได้ตลอดเวลาบนอุปกรณ์นี้ค่ะ</p>
                 </div>
 
-                <!-- Actions: Like (1 like per user) & Bookshelf & Donate -->
-                <div class="border-t border-gray-200/60 pt-8 mt-12 text-center space-y-4" id="readerFooterActionsBox">
-                    <p class="font-cute text-sm text-gray-500">อ่าน/ชมตอนนี้จบแล้ว ชอบไหมคะ? ส่งพลังใจให้นักเขียนได้น้า 💖</p>
+                <!-- Actions: Like & Bookshelf & Donate -->
+                <div class="border-t border-gray-200 pt-8 mt-12 text-center space-y-4" id="readerFooterActionsBox">
+                    <p class="font-cute text-sm text-black font-semibold">อ่าน/ชมตอนนี้จบแล้ว ชอบไหมคะ? ส่งพลังใจให้นักเขียนได้น้า 💖</p>
                     <div class="flex flex-wrap justify-center items-center gap-3">
-                        <button onclick="toggleChapterLike()" id="btnChapterLike" class="font-cute text-sm px-5 py-2.5 rounded-2xl border active:scale-95 transition flex items-center gap-2 shadow-sm">
+                        <button onclick="toggleChapterLike()" id="btnChapterLike" class="font-cute text-sm px-5 py-2.5 rounded-2xl border active:scale-95 transition flex items-center gap-2 shadow-sm font-bold">
                             <i class="fa-regular fa-heart"></i>
                             <span>กดใจให้ตอนนี้ (<strong id="chapterLikesCount">0</strong>)</span>
                         </button>
 
-                        <button onclick="toggleBookshelfFromReader()" id="readerBookshelfBtn" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-cute text-sm px-4 py-2.5 rounded-2xl border border-emerald-200 active:scale-95 transition flex items-center gap-2 shadow-sm">
-                            <i class="fa-regular fa-bookmark"></i> <span>เก็บเข้าชั้น</span>
+                        <button onclick="toggleBookshelfFromReader()" id="readerBookshelfBtn" class="bg-emerald-50 hover:bg-emerald-100 text-black font-cute text-sm px-4 py-2.5 rounded-2xl border border-emerald-300 active:scale-95 transition flex items-center gap-2 shadow-sm font-bold">
+                            <i class="fa-regular fa-bookmark text-emerald-700"></i> <span>เก็บเข้าชั้น</span>
                         </button>
 
-                        <button onclick="openDonateModal()" class="bg-brand-50 hover:bg-brand-100 text-brand-700 font-cute text-sm px-5 py-2.5 rounded-2xl border border-brand-200 active:scale-95 transition flex items-center gap-2 shadow-sm">
+                        <button onclick="openDonateModal()" class="bg-brand-50 hover:bg-brand-100 text-black font-cute text-sm px-5 py-2.5 rounded-2xl border border-brand-300 active:scale-95 transition flex items-center gap-2 shadow-sm font-bold">
                             <span>🍓 โดเนต</span>
                         </button>
 
-                        <button onclick="shareChapter()" class="bg-gray-50 hover:bg-gray-100 text-gray-600 font-cute text-sm px-4 py-2.5 rounded-2xl border border-gray-200 transition flex items-center gap-2">
+                        <button onclick="shareChapter()" class="bg-gray-50 hover:bg-gray-100 text-black font-cute text-sm px-4 py-2.5 rounded-2xl border border-gray-300 transition flex items-center gap-2 font-semibold">
                             <i class="fa-solid fa-share-nodes"></i> แชร์
                         </button>
                     </div>
@@ -488,18 +488,18 @@
                 <!-- Comments Section -->
                 <div class="border-t-2 border-dashed border-brand-200 pt-8 space-y-6">
                     <div class="flex items-center justify-between">
-                        <h4 class="font-cute font-bold text-lg text-gray-800 flex items-center gap-2">
+                        <h4 class="font-cute font-bold text-lg text-black flex items-center gap-2">
                             <span>💬 ความคิดเห็นของนักอ่าน (<span id="chapterCommentsCount">0</span>)</span>
                         </h4>
-                        <span class="text-xs text-brand-600 font-cute">แลกเปลี่ยนความรู้สึกกับนักเขียน ✨</span>
+                        <span class="text-xs text-black font-cute font-semibold">แลกเปลี่ยนความรู้สึกกับนักเขียน ✨</span>
                     </div>
 
-                    <div class="bg-white/90 rounded-2xl p-4 border border-brand-100 shadow-sm space-y-3" id="commentFormBox">
+                    <div class="bg-white rounded-2xl p-4 border border-gray-300 shadow-sm space-y-3" id="commentFormBox">
                         <div>
-                            <input type="text" id="commentAuthorInput" placeholder="ชื่อเล่นหรือนามปากกาของคุณ..." class="w-full text-xs font-cute px-3.5 py-2 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-400">
+                            <input type="text" id="commentAuthorInput" placeholder="ชื่อเล่นหรือนามปากกาของคุณ..." class="w-full text-xs font-cute px-3.5 py-2 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-500 text-black font-semibold">
                         </div>
                         <div>
-                            <textarea id="commentTextInput" rows="2" placeholder="เขียนความรู้สึก ความประทับใจ หรือให้กำลังใจนักเขียน..." class="w-full text-xs font-cute px-3.5 py-2 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-400"></textarea>
+                            <textarea id="commentTextInput" rows="2" placeholder="เขียนความรู้สึก ความประทับใจ หรือให้กำลังใจนักเขียน..." class="w-full text-xs font-cute px-3.5 py-2 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-500 text-black font-medium"></textarea>
                         </div>
                         <div class="text-right">
                             <button onclick="submitChapterComment()" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-cute text-xs font-bold px-5 py-2 rounded-xl shadow-sm transition">
@@ -516,39 +516,37 @@
     <!-- ================= MODAL: BOOKSHELF (ชั้นหนังสือของฉัน) ================= -->
     <div id="bookshelfModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-5 shadow-2xl border-2 border-emerald-200 relative max-h-[85vh] overflow-y-auto">
-            <button onclick="closeBookshelfModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition">✕</button>
+            <button onclick="closeBookshelfModal()" class="absolute top-4 right-4 text-black hover:text-gray-700 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition font-bold">✕</button>
             <div class="text-center space-y-1">
                 <span class="text-3xl">📚</span>
-                <h3 class="text-xl font-cute font-bold text-gray-800">ชั้นหนังสือส่วนตัวของฉัน</h3>
-                <p class="text-xs text-gray-500">ผลงานที่คุณเก็บเข้าชั้นไว้สำหรับอ่านต่อได้สะดวก</p>
+                <h3 class="text-xl font-cute font-bold text-black">ชั้นหนังสือส่วนตัวของฉัน</h3>
+                <p class="text-xs text-black font-medium">ผลงานที่คุณเก็บเข้าชั้นไว้สำหรับอ่านต่อได้สะดวก</p>
             </div>
 
-            <div id="bookshelfListContainer" class="space-y-3">
-                <!-- Bookshelf cards injected dynamically -->
-            </div>
+            <div id="bookshelfListContainer" class="space-y-3"></div>
         </div>
     </div>
 
     <!-- ================= MODAL: E-BOOK BUY & DOWNLOAD (PDF + ePub) ================= -->
     <div id="ebookModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-5 shadow-2xl border-2 border-brand-200 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeEbookModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition">✕</button>
+            <button onclick="closeEbookModal()" class="absolute top-4 right-4 text-black hover:text-gray-700 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition font-bold">✕</button>
             
             <div class="text-center space-y-1.5">
                 <span class="text-3xl">📑</span>
-                <h3 class="text-xl font-cute font-bold text-gray-800">ฉบับ E-book รวมเล่มจบสมบูรณ์</h3>
-                <p class="text-xs text-gray-500">ได้รับไฟล์ทั้ง <strong class="text-brand-700">PDF</strong> และ <strong class="text-teal-700">ePub</strong> ครบชุด</p>
+                <h3 class="text-xl font-cute font-bold text-black">ฉบับ E-book รวมเล่มจบสมบูรณ์</h3>
+                <p class="text-xs text-black font-semibold">ได้รับไฟล์ทั้ง <strong class="text-black underline">PDF</strong> และ <strong class="text-black underline">ePub</strong> ครบชุด</p>
             </div>
 
-            <div class="flex gap-4 p-3 bg-brand-50/60 rounded-2xl border border-brand-100 items-center">
+            <div class="flex gap-4 p-3 bg-brand-50/70 rounded-2xl border border-brand-200 items-center">
                 <img id="ebookCover" src="" class="w-16 h-22 rounded-xl object-cover shadow-sm flex-shrink-0">
                 <div class="space-y-1">
-                    <h4 id="ebookTitle" class="font-cute font-bold text-sm text-gray-800"></h4>
-                    <p class="text-xs text-brand-600 font-cute font-semibold">ราคา: <span id="ebookPriceDisplay" class="text-base font-bold text-emerald-700">0</span> บาท / เหรียญ</p>
-                    <div class="flex items-center gap-1.5 text-[10px] text-gray-500">
-                        <span class="bg-red-50 text-red-600 px-1.5 py-0.5 rounded font-bold border border-red-200">PDF</span>
+                    <h4 id="ebookTitle" class="font-cute font-bold text-sm text-black"></h4>
+                    <p class="text-xs text-black font-cute font-bold">ราคา: <span id="ebookPriceDisplay" class="text-base font-bold text-black">0</span> บาท / เหรียญ</p>
+                    <div class="flex items-center gap-1.5 text-[10px] text-black font-bold">
+                        <span class="bg-red-100 text-black px-2 py-0.5 rounded font-bold border border-red-300">PDF</span>
                         <span>+</span>
-                        <span class="bg-teal-50 text-teal-600 px-1.5 py-0.5 rounded font-bold border border-teal-200">ePub</span>
+                        <span class="bg-teal-100 text-black px-2 py-0.5 rounded font-bold border border-teal-300">ePub</span>
                         <span>จบครบทุกตอน</span>
                     </div>
                 </div>
@@ -556,8 +554,8 @@
 
             <!-- Not Purchased yet: Buying Options -->
             <div id="ebookBuySection" class="space-y-3">
-                <div class="bg-gray-50 rounded-2xl p-3 text-xs space-y-2 text-gray-600 border border-gray-200">
-                    <p class="font-cute font-bold text-gray-800">💡 สิ่งที่คุณจะได้รับ:</p>
+                <div class="bg-gray-50 rounded-2xl p-3 text-xs space-y-2 text-black border border-gray-300 font-medium">
+                    <p class="font-cute font-bold text-black">💡 สิ่งที่คุณจะได้รับ:</p>
                     <p>• <strong>ไฟล์ PDF:</strong> จัดหน้าสวยงาม ตัวอักษรคมชัด เหมาะสำหรับอ่านบน iPad, แท็บเล็ต หรือคอมพิวเตอร์</p>
                     <p>• <strong>ไฟล์ ePub:</strong> จัดรูปเล่มตามมาตรฐาน E-book ปรับขนาดตัวอักษรและฟอนต์ได้ตามใจบนแอปอ่านนิยายทุกแพลตฟอร์ม</p>
                 </div>
@@ -566,17 +564,17 @@
                     <button onclick="buyEbookWithCoins()" class="w-full bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-cute font-bold py-2.5 rounded-2xl shadow-cute-green transition flex items-center justify-center gap-2">
                         <span>🪙 ชำระด้วยเหรียญในกระเป๋า</span> (<span id="btnEbookCoinsPrice">0</span> เหรียญ)
                     </button>
-                    <button onclick="openTopupModal()" class="w-full bg-blue-50 hover:bg-blue-100 text-blue-800 font-cute text-xs py-2.5 rounded-2xl border border-blue-200 transition flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-qrcode text-blue-600"></i> สแกนชำระผ่านธนาคารกรุงเทพ
+                    <button onclick="openTopupModal()" class="w-full bg-blue-50 hover:bg-blue-100 text-black font-cute text-xs py-2.5 rounded-2xl border border-blue-300 transition flex items-center justify-center gap-2 font-bold">
+                        <i class="fa-solid fa-qrcode text-blue-700"></i> สแกนชำระผ่านธนาคารกรุงเทพ
                     </button>
                 </div>
             </div>
 
             <!-- Already Purchased: Download Buttons for PDF & ePub -->
             <div id="ebookDownloadSection" class="hidden space-y-3 pt-2">
-                <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-3 text-center space-y-1">
-                    <span class="text-emerald-700 text-sm font-cute font-bold">🎉 คุณเป็นเจ้าของ E-book เรื่องนี้แล้วค่ะ!</span>
-                    <p class="text-[11px] text-emerald-800">สามารถกดดาวน์โหลดไฟล์ PDF และ ePub ด้านล่างได้ตลอดเวลา</p>
+                <div class="bg-emerald-50 border border-emerald-300 rounded-2xl p-3 text-center space-y-1">
+                    <span class="text-black text-sm font-cute font-bold">🎉 คุณเป็นเจ้าของ E-book เรื่องนี้แล้วค่ะ!</span>
+                    <p class="text-[11px] text-black font-semibold">สามารถกดดาวน์โหลดไฟล์ PDF และ ePub ด้านล่างได้ตลอดเวลา</p>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
@@ -596,57 +594,57 @@
     <!-- ================= MODAL: PIN ACCESS (รหัส 785) ================= -->
     <div id="pinModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-sm w-full p-6 space-y-5 shadow-2xl border-2 border-brand-200 text-center relative">
-            <button onclick="closePinModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition">✕</button>
+            <button onclick="closePinModal()" class="absolute top-4 right-4 text-black hover:text-gray-700 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition font-bold">✕</button>
             <div class="w-14 h-14 bg-brand-100 text-brand-700 rounded-2xl flex items-center justify-center text-2xl mx-auto shadow-inner">
                 🔐
             </div>
             <div>
-                <h3 class="text-xl font-cute font-bold text-gray-800">เข้าสู่ห้องนักเขียน</h3>
-                <p class="text-xs text-gray-500 mt-1">กรุณาใส่รหัส PIN เพื่อเข้าสู่ระบบจัดการและลงนิยาย</p>
+                <h3 class="text-xl font-cute font-bold text-black">เข้าสู่ห้องนักเขียน</h3>
+                <p class="text-xs text-black font-medium mt-1">กรุณาใส่รหัส PIN เพื่อเข้าสู่ระบบจัดการและลงนิยาย</p>
             </div>
-            <input type="password" id="pinInput" maxlength="6" placeholder="• • •" class="w-full text-center tracking-widest text-2xl px-4 py-2.5 rounded-2xl border-2 border-brand-200 focus:outline-none focus:border-brand-500 font-mono">
+            <input type="password" id="pinInput" maxlength="6" placeholder="• • •" class="w-full text-center tracking-widest text-2xl px-4 py-2.5 rounded-2xl border-2 border-gray-300 focus:outline-none focus:border-brand-500 font-mono text-black font-bold">
             <button onclick="verifyWriterPin()" class="w-full bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-cute font-bold py-2.5 rounded-2xl shadow-md transition">
                 เข้าสู่ห้องนักเขียน ✨
             </button>
         </div>
     </div>
 
-    <!-- ================= MODAL: CREATE / EDIT NOVEL (WITH E-BOOK SETTINGS) ================= -->
+    <!-- ================= MODAL: CREATE / EDIT NOVEL ================= -->
     <div id="novelModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl border-2 border-brand-200 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeNovelModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition">✕</button>
-            <h3 id="novelModalTitle" class="text-xl font-cute font-bold text-gray-800 flex items-center gap-2">
+            <button onclick="closeNovelModal()" class="absolute top-4 right-4 text-black hover:text-gray-700 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition font-bold">✕</button>
+            <h3 id="novelModalTitle" class="text-xl font-cute font-bold text-black flex items-center gap-2">
                 <span>📚 เพิ่มผลงานเรื่องใหม่</span>
             </h3>
 
             <input type="hidden" id="editNovelId" value="">
             <div class="space-y-3 text-xs">
                 <div>
-                    <label class="block text-gray-700 mb-1 font-cute font-bold">รูปแบบผลงาน: *</label>
+                    <label class="block text-black mb-1 font-cute font-bold">รูปแบบผลงาน: *</label>
                     <div class="grid grid-cols-2 gap-3">
-                        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-brand-200 bg-brand-50/50 cursor-pointer hover:border-brand-400">
-                            <input type="radio" name="novelTypeRadio" value="novel" checked class="text-brand-500">
-                            <span class="font-cute text-xs text-gray-800">📖 นิยายบรรยาย (Text)</span>
+                        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-brand-300 bg-brand-50/50 cursor-pointer hover:border-brand-500">
+                            <input type="radio" name="novelTypeRadio" value="novel" checked class="text-brand-600">
+                            <span class="font-cute text-xs text-black font-bold">📖 นิยายบรรยาย (Text)</span>
                         </label>
-                        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-teal-200 bg-teal-50/50 cursor-pointer hover:border-teal-400">
-                            <input type="radio" name="novelTypeRadio" value="comic" class="text-teal-500">
-                            <span class="font-cute text-xs text-gray-800">🎨 การ์ตูน (ภาพ AI)</span>
+                        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-teal-300 bg-teal-50/50 cursor-pointer hover:border-teal-500">
+                            <input type="radio" name="novelTypeRadio" value="comic" class="text-teal-600">
+                            <span class="font-cute text-xs text-black font-bold">🎨 การ์ตูน (ภาพ AI)</span>
                         </label>
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-1 font-cute">ชื่อเรื่อง: *</label>
-                    <input type="text" id="novelInputTitle" placeholder="เช่น เล่ห์รักพันธนาการหัวใจ" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-400 font-cute text-sm">
+                    <label class="block text-black mb-1 font-cute font-bold">ชื่อเรื่อง: *</label>
+                    <input type="text" id="novelInputTitle" placeholder="เช่น เล่ห์รักพันธนาการหัวใจ" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-500 font-cute text-sm text-black font-semibold">
                 </div>
                 <div>
-                    <label class="block text-gray-700 mb-1 font-cute">คำโปรยสั้นๆ (Tagline):</label>
-                    <input type="text" id="novelInputTagline" placeholder="เช่น เมื่อความจำยอมกลายเป็นความผูกพันที่ยากจะถอนตัว" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-400 font-cute text-sm">
+                    <label class="block text-black mb-1 font-cute font-bold">คำโปรยสั้นๆ (Tagline):</label>
+                    <input type="text" id="novelInputTagline" placeholder="เช่น เมื่อความจำยอมกลายเป็นความผูกพันที่ยากจะถอนตัว" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-500 font-cute text-sm text-black font-medium">
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-gray-700 mb-1 font-cute">หมวดหมู่:</label>
-                        <select id="novelInputCategory" class="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-400 font-cute text-sm">
+                        <label class="block text-black mb-1 font-cute font-bold">หมวดหมู่:</label>
+                        <select id="novelInputCategory" class="w-full px-3 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-500 font-cute text-sm text-black font-semibold">
                             <option value="โรแมนติก ดราม่า">โรแมนติก ดราม่า</option>
                             <option value="การ์ตูนโรแมนติก">การ์ตูนโรแมนติก</option>
                             <option value="ฟีลกู๊ด อบอุ่นหัวใจ">ฟีลกู๊ด อบอุ่นหัวใจ</option>
@@ -656,8 +654,8 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-gray-700 mb-1 font-cute">สถานะเรื่อง:</label>
-                        <select id="novelInputStatus" class="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-400 font-cute text-sm">
+                        <label class="block text-black mb-1 font-cute font-bold">สถานะเรื่อง:</label>
+                        <select id="novelInputStatus" class="w-full px-3 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-500 font-cute text-sm text-black font-bold">
                             <option value="กำลังออนแอร์">กำลังออนแอร์</option>
                             <option value="จบแล้ว">จบแล้ว</option>
                         </select>
@@ -665,26 +663,26 @@
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-1 font-cute">ภาพหน้าปก:</label>
+                    <label class="block text-black mb-1 font-cute font-bold">ภาพหน้าปก:</label>
                     <div class="flex items-center gap-2 mb-1.5">
                         <input type="file" id="novelCoverFileInput" accept="image/*" class="hidden" onchange="handleNovelCoverUpload(event)">
-                        <button type="button" onclick="document.getElementById('novelCoverFileInput').click()" class="bg-brand-50 hover:bg-brand-100 border border-brand-200 text-brand-700 px-3.5 py-2 rounded-xl font-cute text-xs flex items-center gap-1.5 transition">
-                            <i class="fa-solid fa-image"></i> เลือกรูปปกจากเครื่อง
+                        <button type="button" onclick="document.getElementById('novelCoverFileInput').click()" class="bg-brand-50 hover:bg-brand-100 border border-brand-300 text-black font-bold px-3.5 py-2 rounded-xl font-cute text-xs flex items-center gap-1.5 transition">
+                            <i class="fa-solid fa-image text-brand-700"></i> เลือกรูปปกจากเครื่อง
                         </button>
-                        <span class="text-[11px] text-gray-400">หรือระบุ URL</span>
+                        <span class="text-[11px] text-black font-medium">หรือระบุ URL</span>
                     </div>
-                    <input type="text" id="novelInputCover" placeholder="https://..." class="w-full px-3.5 py-2 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-400 text-xs">
+                    <input type="text" id="novelInputCover" placeholder="https://..." class="w-full px-3.5 py-2 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-500 text-xs text-black">
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 mb-1 font-cute">เรื่องย่อ (Synopsis):</label>
-                    <textarea id="novelInputSynopsis" rows="3" placeholder="เขียนเรื่องย่อชวนติดตาม..." class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-400 font-body text-sm"></textarea>
+                    <label class="block text-black mb-1 font-cute font-bold">เรื่องย่อ (Synopsis):</label>
+                    <textarea id="novelInputSynopsis" rows="3" placeholder="เขียนเรื่องย่อชวนติดตาม..." class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-500 font-body text-sm text-black font-medium"></textarea>
                 </div>
 
-                <!-- E-Book Configuration Box in Writer Studio -->
-                <div class="p-3.5 rounded-2xl bg-emerald-50/70 border border-emerald-200 space-y-2.5">
+                <!-- E-Book Configuration Box -->
+                <div class="p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-300 space-y-2.5">
                     <div class="flex items-center justify-between">
-                        <label class="flex items-center gap-2 cursor-pointer font-cute font-bold text-emerald-900 text-xs">
+                        <label class="flex items-center gap-2 cursor-pointer font-cute font-bold text-black text-xs">
                             <input type="checkbox" id="novelHasEbookCheckbox" onchange="toggleEbookFormInputs()" class="w-4 h-4 text-emerald-600 rounded">
                             <span>🛒 เปิดจำหน่ายฉบับ E-book (PDF + ePub)</span>
                         </label>
@@ -692,16 +690,16 @@
 
                     <div id="ebookInputsBox" class="hidden space-y-2 pt-1">
                         <div>
-                            <label class="block text-emerald-800 text-[11px] mb-0.5 font-cute">ราคา E-book (บาท/เหรียญ):</label>
-                            <input type="number" id="novelEbookPriceInput" min="1" value="159" class="w-28 px-3 py-1.5 rounded-xl border border-emerald-200 text-xs font-bold text-emerald-800">
+                            <label class="block text-black text-[11px] mb-0.5 font-cute font-bold">ราคา E-book (บาท/เหรียญ):</label>
+                            <input type="number" id="novelEbookPriceInput" min="1" value="159" class="w-28 px-3 py-1.5 rounded-xl border border-gray-300 text-xs font-bold text-black">
                         </div>
                         <div>
-                            <label class="block text-emerald-800 text-[11px] mb-0.5 font-cute">ลิงก์ดาวน์โหลดไฟล์ PDF (เช่น ลิงก์ Drive/Cloud):</label>
-                            <input type="text" id="novelEbookPdfInput" placeholder="https://drive.google.com/... หรือคลังไฟล์" class="w-full px-3 py-1.5 rounded-xl border border-emerald-200 text-xs font-mono">
+                            <label class="block text-black text-[11px] mb-0.5 font-cute font-bold">ลิงก์ดาวน์โหลดไฟล์ PDF (เช่น ลิงก์ Drive/Cloud):</label>
+                            <input type="text" id="novelEbookPdfInput" placeholder="https://drive.google.com/... หรือคลังไฟล์" class="w-full px-3 py-1.5 rounded-xl border border-gray-300 text-xs font-mono text-black">
                         </div>
                         <div>
-                            <label class="block text-emerald-800 text-[11px] mb-0.5 font-cute">ลิงก์ดาวน์โหลดไฟล์ ePub:</label>
-                            <input type="text" id="novelEbookEpubInput" placeholder="https://drive.google.com/... หรือคลังไฟล์" class="w-full px-3 py-1.5 rounded-xl border border-emerald-200 text-xs font-mono">
+                            <label class="block text-black text-[11px] mb-0.5 font-cute font-bold">ลิงก์ดาวน์โหลดไฟล์ ePub:</label>
+                            <input type="text" id="novelEbookEpubInput" placeholder="https://drive.google.com/... หรือคลังไฟล์" class="w-full px-3 py-1.5 rounded-xl border border-gray-300 text-xs font-mono text-black">
                         </div>
                     </div>
                 </div>
@@ -713,14 +711,14 @@
         </div>
     </div>
 
-    <!-- ================= MODAL: CHAPTER EDITOR (จำกัดสูงสุด 1,200 คำ) ================= -->
+    <!-- ================= MODAL: CHAPTER EDITOR ================= -->
     <div id="chapterModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl border-2 border-brand-200 relative max-h-[92vh] overflow-y-auto">
-            <button onclick="closeChapterModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition">✕</button>
+            <button onclick="closeChapterModal()" class="absolute top-4 right-4 text-black hover:text-gray-700 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition font-bold">✕</button>
 
             <div>
-                <h3 id="chapterModalHeader" class="text-xl font-cute font-bold text-gray-800">✍️ เขียนตอนใหม่</h3>
-                <p id="chapterModalNovelName" class="text-xs font-cute text-brand-600"></p>
+                <h3 id="chapterModalHeader" class="text-xl font-cute font-bold text-black">✍️ เขียนตอนใหม่</h3>
+                <p id="chapterModalNovelName" class="text-xs font-cute text-black font-bold"></p>
             </div>
 
             <input type="hidden" id="chapterTargetNovelId" value="">
@@ -728,57 +726,57 @@
 
             <div class="space-y-3 text-xs">
                 <div>
-                    <label class="block text-gray-700 mb-1 font-cute">ชื่อตอน: *</label>
-                    <input type="text" id="chapterInputTitle" placeholder="เช่น บทที่ 5: สัมผัสแห่งหัวใจ" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-400 font-cute text-sm">
+                    <label class="block text-black mb-1 font-cute font-bold">ชื่อตอน: *</label>
+                    <input type="text" id="chapterInputTitle" placeholder="เช่น บทที่ 5: สัมผัสแห่งหัวใจ" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-500 font-cute text-sm text-black font-semibold">
                 </div>
 
-                <div class="bg-amber-50/70 border border-amber-200 rounded-2xl p-3.5 flex flex-wrap items-center justify-between gap-3">
+                <div class="bg-amber-50 border border-amber-300 rounded-2xl p-3.5 flex flex-wrap items-center justify-between gap-3">
                     <div>
-                        <div class="font-cute font-bold text-amber-900 text-sm flex items-center gap-1.5">
+                        <div class="font-cute font-bold text-black text-sm flex items-center gap-1.5">
                             <span>🪙 การติดเหรียญตอนพิเศษ</span>
                         </div>
-                        <p class="text-[11px] text-amber-700">เลือกอ่านฟรี หรือติดเหรียญเพื่อให้นักอ่านจ่ายก่อนอ่าน</p>
+                        <p class="text-[11px] text-black font-medium">เลือกอ่านฟรี หรือติดเหรียญเพื่อให้นักอ่านจ่ายก่อนอ่าน</p>
                     </div>
                     <div class="flex items-center gap-3">
-                        <label class="flex items-center gap-1.5 cursor-pointer font-cute text-xs">
-                            <input type="checkbox" id="chapterIsLockedCheckbox" onchange="toggleCoinPriceInput()" class="w-4 h-4 text-amber-500 rounded focus:ring-amber-400">
+                        <label class="flex items-center gap-1.5 cursor-pointer font-cute text-xs text-black font-bold">
+                            <input type="checkbox" id="chapterIsLockedCheckbox" onchange="toggleCoinPriceInput()" class="w-4 h-4 text-amber-500 rounded">
                             <span>ติดเหรียญตอนนี้</span>
                         </label>
                         <div id="coinPriceBox" class="hidden items-center gap-1">
-                            <input type="number" id="chapterCoinPriceInput" min="1" max="100" value="3" class="w-16 px-2 py-1 rounded-lg border border-amber-300 font-bold text-center text-amber-800 text-xs">
-                            <span class="font-cute text-amber-800 text-xs">เหรียญ</span>
+                            <input type="number" id="chapterCoinPriceInput" min="1" max="100" value="3" class="w-16 px-2 py-1 rounded-lg border border-amber-400 font-bold text-center text-black text-xs">
+                            <span class="font-cute text-black text-xs font-bold">เหรียญ</span>
                         </div>
                     </div>
                 </div>
 
-                <div id="comicUploadSection" class="p-3.5 rounded-2xl bg-teal-50/60 border border-teal-200 space-y-2.5">
+                <div id="comicUploadSection" class="p-3.5 rounded-2xl bg-teal-50/70 border border-teal-300 space-y-2.5">
                     <div class="flex items-center justify-between">
-                        <label class="font-cute font-bold text-teal-800 text-xs flex items-center gap-1.5">
-                            <i class="fa-solid fa-images text-teal-600"></i> ภาพการ์ตูน / ภาพประกอบ AI:
+                        <label class="font-cute font-bold text-black text-xs flex items-center gap-1.5">
+                            <i class="fa-solid fa-images text-teal-700"></i> ภาพการ์ตูน / ภาพประกอบ AI:
                         </label>
                         <input type="file" id="chapterMultiImageUpload" accept="image/*" multiple class="hidden" onchange="handleChapterImagesUpload(event)">
-                        <button type="button" onclick="document.getElementById('chapterMultiImageUpload').click()" class="bg-teal-600 hover:bg-teal-700 text-white font-cute text-xs px-3 py-1.5 rounded-xl shadow-sm transition flex items-center gap-1">
+                        <button type="button" onclick="document.getElementById('chapterMultiImageUpload').click()" class="bg-teal-600 hover:bg-teal-700 text-white font-cute text-xs px-3 py-1.5 rounded-xl shadow-sm transition flex items-center gap-1 font-bold">
                             <i class="fa-solid fa-upload"></i> + อัปโหลดรูปภาพ (เลือกหลายรูปได้)
                         </button>
                     </div>
 
                     <div id="comicPanelsPreviewList" class="flex flex-wrap gap-2 pt-1 min-h-[50px] items-center">
-                        <span class="text-[11px] text-gray-400">ยังไม่มีรูปภาพการ์ตูนในตอนนี้ค่ะ</span>
+                        <span class="text-[11px] text-black font-medium">ยังไม่มีรูปภาพการ์ตูนในตอนนี้ค่ะ</span>
                     </div>
 
                     <div>
-                        <label class="block text-gray-500 text-[11px] mb-1 font-cute">หรือวางลิงก์รูปภาพ (URLs) แยกทีละบรรทัด:</label>
-                        <textarea id="chapterImagesUrls" rows="2" placeholder="https://image1.jpg&#10;https://image2.jpg" class="w-full px-3 py-1.5 rounded-xl border border-teal-200 text-xs font-mono"></textarea>
+                        <label class="block text-black text-[11px] mb-1 font-cute font-bold">หรือวางลิงก์รูปภาพ (URLs) แยกทีละบรรทัด:</label>
+                        <textarea id="chapterImagesUrls" rows="2" placeholder="https://image1.jpg&#10;https://image2.jpg" class="w-full px-3 py-1.5 rounded-xl border border-teal-300 text-xs font-mono text-black"></textarea>
                     </div>
                 </div>
 
                 <div>
                     <div class="flex items-center justify-between mb-1">
-                        <label class="block text-gray-700 font-cute font-semibold">เนื้อเรื่องนิยาย / คำบรรยาย (สูงสุด 1,200 คำ): *</label>
-                        <span class="text-[11px] font-cute" id="chapterWordCount">0 / 1,200 คำ</span>
+                        <label class="block text-black font-cute font-bold">เนื้อเรื่องนิยาย / คำบรรยาย (สูงสุด 1,200 คำ): *</label>
+                        <span class="text-[11px] font-cute text-black font-bold" id="chapterWordCount">0 / 1,200 คำ</span>
                     </div>
-                    <textarea id="chapterInputContent" oninput="updateChapterStats()" rows="10" placeholder="พิมพ์เนื้อเรื่องนิยายที่นี่ได้เลยค่ะ (ไม่เกิน 1,200 คำ)..." class="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:outline-none focus:border-brand-400 font-novel text-base leading-relaxed"></textarea>
-                    <div id="wordCountWarning" class="hidden text-xs text-rose-500 font-cute mt-1">
+                    <textarea id="chapterInputContent" oninput="updateChapterStats()" rows="10" placeholder="พิมพ์เนื้อเรื่องนิยายที่นี่ได้เลยค่ะ (ไม่เกิน 1,200 คำ)..." class="w-full px-4 py-3 rounded-2xl border border-gray-300 focus:outline-none focus:border-brand-500 font-novel text-base leading-relaxed text-black font-medium"></textarea>
+                    <div id="wordCountWarning" class="hidden text-xs text-rose-600 font-cute mt-1 font-bold">
                         ⚠️ จำนวนคำเกิน 1,200 คำแล้วค่ะ กรุณาตัดทอนเนื้อหาลงเล็กน้อยนะคะ
                     </div>
                 </div>
@@ -793,41 +791,41 @@
     <!-- ================= MODAL: TOP-UP COINS (ธนาคารกรุงเทพ & QR Code) ================= -->
     <div id="topupModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-6 shadow-2xl border-2 border-brand-200 relative animate-float max-h-[90vh] overflow-y-auto">
-            <button onclick="closeTopupModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition">✕</button>
+            <button onclick="closeTopupModal()" class="absolute top-4 right-4 text-black hover:text-gray-700 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition font-bold">✕</button>
             
             <div class="text-center space-y-1">
                 <span class="text-3xl">🪙</span>
-                <h3 class="text-2xl font-cute font-bold text-gray-800">เติมเหรียญสนับสนุนนักเขียน</h3>
-                <p class="text-xs text-gray-500">เหรียญใช้สำหรับปลดล็อกตอนพิเศษและส่งโดเนตให้นักเขียน</p>
+                <h3 class="text-2xl font-cute font-bold text-black">เติมเหรียญสนับสนุนนักเขียน</h3>
+                <p class="text-xs text-black font-medium">เหรียญใช้สำหรับปลดล็อกตอนพิเศษ ซื้อ E-book และโดเนตให้นักเขียน</p>
             </div>
 
-            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3 flex items-center justify-between">
-                <span class="text-xs font-cute text-amber-800">เหรียญคงเหลือของคุณ:</span>
-                <span class="font-bold text-amber-600 text-lg"><span id="modalWalletBalance">0</span> เหรียญ</span>
+            <div class="bg-amber-50 border border-amber-300 rounded-2xl p-3 flex items-center justify-between">
+                <span class="text-xs font-cute text-black font-bold">เหรียญคงเหลือของคุณ:</span>
+                <span class="font-bold text-black text-lg"><span id="modalWalletBalance">0</span> เหรียญ</span>
             </div>
 
             <div class="grid grid-cols-2 gap-3" id="topupPackagesGrid"></div>
 
-            <div id="paymentArea" class="bg-gradient-to-b from-blue-50/70 to-brand-50/60 rounded-2xl p-4 border border-blue-200 space-y-3 text-center">
-                <div class="flex items-center justify-center gap-2 text-xs font-cute text-blue-900 font-bold">
-                    <span class="w-6 h-6 rounded-full bg-blue-800 text-white flex items-center justify-center text-[10px]">BBL</span>
+            <div id="paymentArea" class="bg-gradient-to-b from-blue-50/80 to-brand-50/70 rounded-2xl p-4 border border-blue-300 space-y-3 text-center">
+                <div class="flex items-center justify-center gap-2 text-xs font-cute text-black font-bold">
+                    <span class="w-6 h-6 rounded-full bg-blue-800 text-white flex items-center justify-center text-[10px] font-bold">BBL</span>
                     <span id="modalBankName">ธนาคารกรุงเทพ (Bangkok Bank)</span>
                 </div>
 
-                <div class="w-40 h-40 bg-white border-2 border-blue-200 rounded-2xl mx-auto p-2 shadow-sm flex flex-col items-center justify-center overflow-hidden">
+                <div class="w-40 h-40 bg-white border-2 border-blue-300 rounded-2xl mx-auto p-2 shadow-sm flex flex-col items-center justify-center overflow-hidden">
                     <img id="modalQrImage" src="" alt="Bank QR Code" class="w-32 h-32 object-contain">
-                    <span class="text-[10px] text-blue-600 font-cute mt-0.5">สแกนชำระเงิน</span>
+                    <span class="text-[10px] text-black font-cute font-bold mt-0.5">สแกนชำระเงิน</span>
                 </div>
 
                 <div class="space-y-1 text-xs">
-                    <div class="text-gray-700">
-                        เลขที่บัญชี: <strong id="modalBankAccountNumber" class="text-blue-900 font-mono text-sm tracking-wider">XXX-X-XXXXX-X</strong>
-                        <button onclick="copyBankAccount()" class="ml-1 text-[11px] bg-blue-100 hover:bg-blue-200 text-blue-700 px-2 py-0.5 rounded-lg transition" title="คัดลอกเลขบัญชี">
+                    <div class="text-black font-semibold">
+                        เลขที่บัญชี: <strong id="modalBankAccountNumber" class="text-black font-mono text-sm tracking-wider font-bold">XXX-X-XXXXX-X</strong>
+                        <button onclick="copyBankAccount()" class="ml-1 text-[11px] bg-blue-100 hover:bg-blue-200 text-black px-2 py-0.5 rounded-lg transition font-bold border border-blue-200" title="คัดลอกเลขบัญชี">
                             <i class="fa-regular fa-copy"></i> คัดลอก
                         </button>
                     </div>
-                    <div class="text-gray-500 text-[11px]">
-                        ชื่อบัญชี: <strong id="modalBankAccountName" class="text-gray-800 font-cute">นารานินทร์</strong>
+                    <div class="text-black text-[11px] font-medium">
+                        ชื่อบัญชี: <strong id="modalBankAccountName" class="text-black font-cute font-bold">นารานินทร์</strong>
                     </div>
                 </div>
 
@@ -841,26 +839,26 @@
     <!-- ================= MODAL: DONATE ================= -->
     <div id="donateModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-lg w-full p-6 space-y-6 shadow-2xl border-2 border-brand-200 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeDonateModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition">✕</button>
+            <button onclick="closeDonateModal()" class="absolute top-4 right-4 text-black hover:text-gray-700 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition font-bold">✕</button>
             <div class="text-center space-y-1">
                 <span class="text-3xl">💖</span>
-                <h3 class="text-2xl font-cute font-bold text-gray-800">โดเนตให้กำลังใจนักเขียน</h3>
-                <p class="text-xs text-gray-500">เลือกของขวัญสติกเกอร์และพิมพ์ข้อความส่งตรงถึงนักเขียนได้เลยค่ะ</p>
+                <h3 class="text-2xl font-cute font-bold text-black">โดเนตให้กำลังใจนักเขียน</h3>
+                <p class="text-xs text-black font-medium">เลือกของขวัญสติกเกอร์และพิมพ์ข้อความส่งตรงถึงนักเขียนได้เลยค่ะ</p>
             </div>
 
             <div class="space-y-2">
-                <label class="text-xs font-cute text-gray-700">เลือกของขวัญสติกเกอร์ที่ต้องการมอบ:</label>
+                <label class="text-xs font-cute text-black font-bold">เลือกของขวัญสติกเกอร์ที่ต้องการมอบ:</label>
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="stickerSelectionGrid"></div>
             </div>
 
             <div class="space-y-3">
                 <div>
-                    <label class="text-xs font-cute text-gray-600 block mb-1">ชื่อเล่นหรือนามปากกาของคุณ:</label>
-                    <input type="text" id="donorNameInput" placeholder="เช่น น้องส้มโอสายเปย์, นักอ่านเงา" class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-400 font-cute">
+                    <label class="text-xs font-cute text-black font-bold block mb-1">ชื่อเล่นหรือนามปากกาของคุณ:</label>
+                    <input type="text" id="donorNameInput" placeholder="เช่น น้องส้มโอสายเปย์, นักอ่านเงา" class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-500 font-cute text-black font-semibold">
                 </div>
                 <div>
-                    <label class="text-xs font-cute text-gray-600 block mb-1">ข้อความให้กำลังใจนักเขียน:</label>
-                    <textarea id="donorMessageInput" rows="3" placeholder="เช่น นิยายสนุกมากกก รอติดตามตอนต่อไปนะคะ สู้ๆ ค่า 🌿" class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-400 font-cute"></textarea>
+                    <label class="text-xs font-cute text-black font-bold block mb-1">ข้อความให้กำลังใจนักเขียน:</label>
+                    <textarea id="donorMessageInput" rows="3" placeholder="เช่น นิยายสนุกมากกก รอติดตามตอนต่อไปนะคะ สู้ๆ ค่า 🌿" class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-500 font-cute text-black font-medium"></textarea>
                 </div>
             </div>
 
@@ -873,26 +871,26 @@
     <!-- ================= MODAL: GITHUB SYNC ================= -->
     <div id="githubSyncModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl border-2 border-brand-200 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeGitHubSyncModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition">✕</button>
+            <button onclick="closeGitHubSyncModal()" class="absolute top-4 right-4 text-black hover:text-gray-700 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition font-bold">✕</button>
 
             <div class="text-center space-y-1">
                 <span class="text-3xl">🚀</span>
-                <h3 class="text-xl font-cute font-bold text-gray-800">เผยแพร่ออนไลน์สู่ GitHub Pages</h3>
-                <p class="text-xs text-gray-500">บันทึกข้อมูลล่าสุดขึ้นเว็บจริงเพื่อให้ทุกคนทั่วโลกได้อ่านทันที</p>
+                <h3 class="text-xl font-cute font-bold text-black">เผยแพร่ออนไลน์สู่ GitHub Pages</h3>
+                <p class="text-xs text-black font-medium">บันทึกข้อมูลล่าสุดขึ้นเว็บจริงเพื่อให้ทุกคนทั่วโลกได้อ่านทันที</p>
             </div>
 
             <div class="space-y-3 text-xs">
                 <div>
-                    <label class="block text-gray-700 mb-1 font-cute">GitHub Username:</label>
-                    <input type="text" id="ghUsername" placeholder="เช่น your-username" class="w-full px-3 py-2 rounded-xl border border-gray-200 font-mono text-xs">
+                    <label class="block text-black mb-1 font-cute font-bold">GitHub Username:</label>
+                    <input type="text" id="ghUsername" placeholder="เช่น your-username" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-mono text-xs text-black font-bold">
                 </div>
                 <div>
-                    <label class="block text-gray-700 mb-1 font-cute">Repository Name:</label>
-                    <input type="text" id="ghRepo" placeholder="เช่น my-novels" class="w-full px-3 py-2 rounded-xl border border-gray-200 font-mono text-xs">
+                    <label class="block text-black mb-1 font-cute font-bold">Repository Name:</label>
+                    <input type="text" id="ghRepo" placeholder="เช่น my-novels" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-mono text-xs text-black font-bold">
                 </div>
                 <div>
-                    <label class="block text-gray-700 mb-1 font-cute">GitHub Personal Access Token:</label>
-                    <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" class="w-full px-3 py-2 rounded-xl border border-gray-200 font-mono text-xs">
+                    <label class="block text-black mb-1 font-cute font-bold">GitHub Personal Access Token:</label>
+                    <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" class="w-full px-3 py-2 rounded-xl border border-gray-300 font-mono text-xs text-black font-bold">
                 </div>
             </div>
 
@@ -901,7 +899,7 @@
             </button>
 
             <div class="text-center pt-2">
-                <button onclick="downloadNovelsDataBackup()" class="block w-full text-xs font-cute text-amber-800 hover:text-amber-900 bg-amber-50 hover:bg-amber-100 py-2 rounded-xl border border-amber-200 transition">
+                <button onclick="downloadNovelsDataBackup()" class="block w-full text-xs font-cute text-black font-bold hover:bg-amber-100 bg-amber-50 py-2 rounded-xl border border-amber-300 transition">
                     📥 ดาวน์โหลดไฟล์ novels.js อัปเดตล่าสุด
                 </button>
             </div>
@@ -909,39 +907,39 @@
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-gray-900 text-white font-cute text-sm px-4 py-3 rounded-2xl shadow-2xl hidden items-center gap-2 border border-white/20 transform transition duration-300">
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-black text-white font-cute text-sm px-4 py-3 rounded-2xl shadow-2xl hidden items-center gap-2 border border-white/20 transform transition duration-300 font-bold">
         <span id="toastIcon">✨</span>
         <span id="toastMsg">ข้อความ</span>
     </div>
 
     <!-- Footer -->
-    <footer class="mt-16 bg-white/80 border-t border-brand-100 py-8">
+    <footer class="mt-16 bg-white border-t border-brand-200 py-8">
         <div class="max-w-6xl mx-auto px-4 text-center space-y-3">
-            <p class="font-cute text-brand-700 text-sm font-semibold">
+            <p class="font-cute text-black text-sm font-bold">
                 🍀 <span id="footerSiteName">Naranin Studio</span> — ทุกตัวอักษรและภาพเรื่องราวกลั่นกรองมาจากหัวใจ 💚
             </p>
             
-            <div class="max-w-3xl mx-auto bg-brand-50/60 border border-brand-200 rounded-2xl p-3.5 text-xs text-gray-600 leading-relaxed font-body">
-                <p class="font-cute font-bold text-brand-800 text-sm mb-1">
+            <div class="max-w-3xl mx-auto bg-brand-50/80 border border-brand-200 rounded-2xl p-4 text-xs text-black leading-relaxed font-body">
+                <p class="font-cute font-bold text-black text-sm mb-1">
                     🛡️ ประกาศการคุ้มครองลิขสิทธิ์
                 </p>
-                <p>
+                <p class="text-black font-medium">
                     สงวนลิขสิทธิ์ตาม <strong>พระราชบัญญัติลิขสิทธิ์ พ.ศ. 2537 (และที่แก้ไขเพิ่มเติม)</strong><br>
                     ผลงาน วรรณกรรม เนื้อเรื่อง ตัวละคร บทสนทนา ตลอดจนภาพประกอบและการ์ตูนทั้งหมดบนเว็บไซต์นี้ เป็นทรัพย์สินทางปัญญาของ <strong>นารานินทร์ (Naranin)</strong><br>
                     ห้ามมิให้ผู้ใดคัดลอก ทำซ้ำ ดัดแปลง สแกน บันทึกเสียง ถ่ายภาพ แปล เผยแพร่ หรือนำส่วนหนึ่งส่วนใดไปเผยแพร่ต่อสาธารณชน หรือนำไปใช้ในเชิงพาณิชย์โดยไม่ได้รับอนุญาตเป็นลายลักษณ์อักษรจากเจ้าของลิขสิทธิ์โดยเด็ดขาด ผู้ละเมิดจะถูกดำเนินคดีตามกฎหมายอย่างถึงที่สุด
                 </p>
             </div>
 
-            <div class="flex justify-center items-center gap-4 text-gray-400 text-xs pt-1">
-                <a href="#" onclick="showHomeView(); return false;" class="hover:text-brand-600">หน้าหลัก</a>
+            <div class="flex justify-center items-center gap-4 text-black font-semibold text-xs pt-1">
+                <a href="#" onclick="showHomeView(); return false;" class="hover:underline">หน้าหลัก</a>
                 <span>•</span>
-                <a href="#" onclick="openBookshelfModal(); return false;" class="hover:text-brand-600">ชั้นหนังสือ</a>
+                <a href="#" onclick="openBookshelfModal(); return false;" class="hover:underline">ชั้นหนังสือ</a>
                 <span>•</span>
-                <a href="#" onclick="requestWriterStudioAccess(); return false;" class="hover:text-brand-600 font-cute">ห้องนักเขียน</a>
+                <a href="#" onclick="requestWriterStudioAccess(); return false;" class="hover:underline font-cute">ห้องนักเขียน</a>
                 <span>•</span>
-                <a href="#" onclick="openDonateModal(); return false;" class="hover:text-brand-600">สนับสนุนนักเขียน</a>
+                <a href="#" onclick="openDonateModal(); return false;" class="hover:underline">สนับสนุนนักเขียน</a>
                 <span>•</span>
-                <a href="#" onclick="openTopupModal(); return false;" class="hover:text-brand-600">เติมเหรียญ</a>
+                <a href="#" onclick="openTopupModal(); return false;" class="hover:underline">เติมเหรียญ</a>
             </div>
         </div>
     </footer>
@@ -1051,14 +1049,14 @@
         function renderChapterUploadedImagesPreview() {
             const container = document.getElementById('comicPanelsPreviewList');
             if (currentUploadedChapterImages.length === 0) {
-                container.innerHTML = `<span class="text-[11px] text-gray-400">ยังไม่มีรูปภาพการ์ตูนในตอนนี้ค่ะ</span>`;
+                container.innerHTML = `<span class="text-[11px] text-black font-medium">ยังไม่มีรูปภาพการ์ตูนในตอนนี้ค่ะ</span>`;
                 return;
             }
             container.innerHTML = currentUploadedChapterImages.map((img, idx) => `
                 <div class="relative w-16 h-20 rounded-xl overflow-hidden border-2 border-brand-300 shadow-sm group">
                     <img src="${img}" class="w-full h-full object-cover">
                     <button type="button" onclick="removeChapterUploadedImage(${idx})" class="absolute top-0.5 right-0.5 bg-rose-500 text-white rounded-full w-4 h-4 text-[9px] flex items-center justify-center shadow">✕</button>
-                    <span class="absolute bottom-0.5 left-0.5 bg-black/60 text-white text-[9px] px-1 rounded font-cute">${idx+1}</span>
+                    <span class="absolute bottom-0.5 left-0.5 bg-black/70 text-white text-[9px] px-1 rounded font-cute font-bold">${idx+1}</span>
                 </div>
             `).join('');
         }
@@ -1140,14 +1138,12 @@
 
             let likedNovels = getUserLikedNovels();
             if (likedNovels.includes(novelId)) {
-                // Already liked -> Toggle off (Unlike)
                 likedNovels = likedNovels.filter(id => id !== novelId);
                 novel.hearts = Math.max(0, (novel.hearts || 0) - 1);
                 localStorage.setItem('user_liked_novels', JSON.stringify(likedNovels));
                 persistAppData();
                 showToast("ยกเลิกการส่งหัวใจแล้วค่ะ 🤍");
             } else {
-                // Like once
                 likedNovels.push(novelId);
                 novel.hearts = (novel.hearts || 0) + 1;
                 localStorage.setItem('user_liked_novels', JSON.stringify(likedNovels));
@@ -1171,11 +1167,11 @@
             heartsText.innerText = (currentNovel.hearts || 0).toLocaleString();
 
             if (isNovelLikedByUser(currentNovel.id)) {
-                btn.className = "text-xs font-cute px-3.5 py-1.5 rounded-full border transition active:scale-95 flex items-center gap-1.5 bg-rose-50 text-rose-600 border-rose-300 font-bold shadow-sm";
-                btn.innerHTML = `<i class="fa-solid fa-heart text-rose-500 animate-pulse"></i> ส่งใจแล้ว (${(currentNovel.hearts || 0).toLocaleString()})`;
+                btn.className = "text-xs font-cute px-3.5 py-1.5 rounded-full border transition active:scale-95 flex items-center gap-1.5 bg-rose-50 text-black border-rose-400 font-bold shadow-sm";
+                btn.innerHTML = `<i class="fa-solid fa-heart text-rose-600 animate-pulse"></i> ส่งใจแล้ว (${(currentNovel.hearts || 0).toLocaleString()})`;
             } else {
-                btn.className = "text-xs font-cute px-3.5 py-1.5 rounded-full border transition active:scale-95 flex items-center gap-1.5 bg-white text-gray-700 border-gray-200 hover:border-rose-300";
-                btn.innerHTML = `<i class="fa-regular fa-heart text-rose-400"></i> ส่งหัวใจ (${(currentNovel.hearts || 0).toLocaleString()})`;
+                btn.className = "text-xs font-cute px-3.5 py-1.5 rounded-full border transition active:scale-95 flex items-center gap-1.5 bg-white text-black border-gray-300 hover:border-rose-400 font-semibold";
+                btn.innerHTML = `<i class="fa-regular fa-heart text-rose-500"></i> ส่งหัวใจ (${(currentNovel.hearts || 0).toLocaleString()})`;
             }
         }
 
@@ -1221,8 +1217,8 @@
                 btn.className = "bg-rose-500 text-white font-cute text-sm px-5 py-2.5 rounded-2xl border border-rose-500 active:scale-95 transition flex items-center gap-2 shadow-sm font-bold";
                 btn.innerHTML = `<i class="fa-solid fa-heart text-white animate-pulse"></i> <span>ส่งใจแล้ว (${count})</span>`;
             } else {
-                btn.className = "bg-rose-50 hover:bg-rose-100 text-rose-600 font-cute text-sm px-5 py-2.5 rounded-2xl border border-rose-200 active:scale-95 transition flex items-center gap-2 shadow-sm";
-                btn.innerHTML = `<i class="fa-regular fa-heart text-rose-500"></i> <span>กดใจให้ตอนนี้ (<strong id="chapterLikesCount">${count}</strong>)</span>`;
+                btn.className = "bg-rose-50 hover:bg-rose-100 text-black font-cute text-sm px-5 py-2.5 rounded-2xl border border-rose-300 active:scale-95 transition flex items-center gap-2 shadow-sm font-bold";
+                btn.innerHTML = `<i class="fa-regular fa-heart text-rose-600"></i> <span>กดใจให้ตอนนี้ (<strong id="chapterLikesCount" class="text-black">${count}</strong>)</span>`;
             }
         }
 
@@ -1273,11 +1269,11 @@
             if (!btn) return;
 
             if (isNovelInBookshelf(currentNovel.id)) {
-                btn.className = "text-xs font-cute px-3.5 py-1.5 rounded-full border transition active:scale-95 flex items-center gap-1.5 bg-emerald-100 text-emerald-800 border-emerald-300 font-bold shadow-sm";
-                btn.innerHTML = `<i class="fa-solid fa-bookmark text-emerald-600"></i> <span>อยู่ในชั้นแล้ว ✓</span>`;
+                btn.className = "text-xs font-cute px-3.5 py-1.5 rounded-full border transition active:scale-95 flex items-center gap-1.5 bg-emerald-100 text-black border-emerald-400 font-bold shadow-sm";
+                btn.innerHTML = `<i class="fa-solid fa-bookmark text-emerald-700"></i> <span>อยู่ในชั้นแล้ว ✓</span>`;
             } else {
-                btn.className = "text-xs font-cute px-3.5 py-1.5 rounded-full border transition active:scale-95 flex items-center gap-1.5 bg-white text-gray-700 border-gray-200 hover:border-emerald-300";
-                btn.innerHTML = `<i class="fa-regular fa-bookmark text-emerald-500"></i> <span>เพิ่มเข้าชั้น</span>`;
+                btn.className = "text-xs font-cute px-3.5 py-1.5 rounded-full border transition active:scale-95 flex items-center gap-1.5 bg-white text-black border-gray-300 hover:border-emerald-400 font-semibold";
+                btn.innerHTML = `<i class="fa-regular fa-bookmark text-emerald-600"></i> <span>เพิ่มเข้าชั้น</span>`;
             }
         }
 
@@ -1290,8 +1286,8 @@
                 btn.className = "bg-emerald-600 text-white font-cute text-sm px-4 py-2.5 rounded-2xl border border-emerald-600 active:scale-95 transition flex items-center gap-2 shadow-sm font-bold";
                 btn.innerHTML = `<i class="fa-solid fa-bookmark"></i> <span>อยู่ในชั้นแล้ว ✓</span>`;
             } else {
-                btn.className = "bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-cute text-sm px-4 py-2.5 rounded-2xl border border-emerald-200 active:scale-95 transition flex items-center gap-2 shadow-sm";
-                btn.innerHTML = `<i class="fa-regular fa-bookmark"></i> <span>เก็บเข้าชั้น</span>`;
+                btn.className = "bg-emerald-50 hover:bg-emerald-100 text-black font-cute text-sm px-4 py-2.5 rounded-2xl border border-emerald-300 active:scale-95 transition flex items-center gap-2 shadow-sm font-bold";
+                btn.innerHTML = `<i class="fa-regular fa-bookmark text-emerald-700"></i> <span>เก็บเข้าชั้น</span>`;
             }
         }
 
@@ -1302,26 +1298,26 @@
             const savedNovels = appNovels.filter(n => shelfIds.includes(n.id));
 
             if (savedNovels.length === 0) {
-                container.innerHTML = `<div class="text-center py-10 text-gray-400 font-cute text-xs space-y-2">
-                    <p class="text-2xl">📚</p>
-                    <p>ชั้นหนังสือของคุณยังว่างอยู่ค่ะ</p>
-                    <p class="text-[11px] text-gray-400">กดปุ่ม "เพิ่มเข้าชั้น" ที่หน้านิยาย เพื่อเก็บไว้อ่านต่อได้เลยค่ะ</p>
+                container.innerHTML = `<div class="text-center py-10 text-black font-cute text-xs space-y-2 font-medium">
+                    <p class="text-3xl">📚</p>
+                    <p class="text-sm font-bold">ชั้นหนังสือของคุณยังว่างอยู่ค่ะ</p>
+                    <p class="text-[11px] text-black">กดปุ่ม "เพิ่มเข้าชั้น" ที่หน้านิยาย เพื่อเก็บไว้อ่านต่อได้เลยค่ะ</p>
                 </div>`;
             } else {
                 savedNovels.forEach(novel => {
                     const card = document.createElement('div');
-                    card.className = "flex items-center justify-between p-3 bg-brand-50/50 rounded-2xl border border-brand-100 hover:bg-brand-50 transition";
+                    card.className = "flex items-center justify-between p-3 bg-brand-50/70 rounded-2xl border border-brand-200 hover:bg-brand-50 transition";
                     card.innerHTML = `
                         <div class="flex items-center gap-3 cursor-pointer" onclick="closeBookshelfModal(); openNovelDetail('${novel.id}')">
                             <img src="${novel.cover}" class="w-12 h-16 rounded-xl object-cover shadow-sm">
                             <div>
-                                <h4 class="font-cute font-bold text-xs text-gray-800">${novel.title}</h4>
-                                <span class="text-[10px] text-brand-600 font-cute">${novel.category} • ${(novel.chapters || []).length} ตอน</span>
+                                <h4 class="font-cute font-bold text-xs text-black">${novel.title}</h4>
+                                <span class="text-[10px] text-black font-cute font-semibold">${novel.category} • ${(novel.chapters || []).length} ตอน</span>
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
-                            <button onclick="closeBookshelfModal(); openNovelDetail('${novel.id}')" class="bg-brand-500 hover:bg-brand-600 text-white font-cute text-xs px-3 py-1.5 rounded-xl shadow-sm">อ่านต่อ</button>
-                            <button onclick="toggleBookshelf('${novel.id}'); openBookshelfModal();" class="text-rose-400 hover:text-rose-600 text-xs px-2 py-1" title="นำออกจากชั้น">✕</button>
+                            <button onclick="closeBookshelfModal(); openNovelDetail('${novel.id}')" class="bg-brand-500 hover:bg-brand-600 text-white font-cute text-xs px-3.5 py-1.5 rounded-xl shadow-sm font-bold">อ่านต่อ</button>
+                            <button onclick="toggleBookshelf('${novel.id}'); openBookshelfModal();" class="text-rose-600 hover:text-rose-800 text-xs px-2 py-1 font-bold" title="นำออกจากชั้น">✕</button>
                         </div>
                     `;
                     container.appendChild(card);
@@ -1365,7 +1361,6 @@
                 buySection.classList.add('hidden');
                 downloadSection.classList.remove('hidden');
 
-                // Set download links
                 const pdfBtn = document.getElementById('downloadPdfBtn');
                 const epubBtn = document.getElementById('downloadEpubBtn');
 
@@ -1459,24 +1454,24 @@
             currentFilter = type;
             ['tabFilterAll', 'tabFilterNovel', 'tabFilterComic', 'tabFilterEbook'].forEach(id => {
                 const btn = document.getElementById(id);
-                if (btn) btn.className = "px-3.5 py-1.5 rounded-xl font-cute text-xs transition text-gray-600 hover:bg-brand-50";
+                if (btn) btn.className = "px-3.5 py-1.5 rounded-xl font-cute text-xs transition text-black font-semibold hover:bg-brand-50";
             });
 
             if (type === 'all') {
-                document.getElementById('tabFilterAll').className = "px-3.5 py-1.5 rounded-xl font-cute text-xs transition bg-brand-500 text-white font-semibold shadow-sm";
+                document.getElementById('tabFilterAll').className = "px-3.5 py-1.5 rounded-xl font-cute text-xs transition bg-brand-500 text-white font-bold shadow-sm";
             } else if (type === 'novel') {
-                document.getElementById('tabFilterNovel').className = "px-3.5 py-1.5 rounded-xl font-cute text-xs transition bg-brand-500 text-white font-semibold shadow-sm";
+                document.getElementById('tabFilterNovel').className = "px-3.5 py-1.5 rounded-xl font-cute text-xs transition bg-brand-500 text-white font-bold shadow-sm";
             } else if (type === 'comic') {
-                document.getElementById('tabFilterComic').className = "px-3.5 py-1.5 rounded-xl font-cute text-xs transition bg-brand-500 text-white font-semibold shadow-sm";
+                document.getElementById('tabFilterComic').className = "px-3.5 py-1.5 rounded-xl font-cute text-xs transition bg-brand-500 text-white font-bold shadow-sm";
             } else if (type === 'ebook') {
-                document.getElementById('tabFilterEbook').className = "px-3.5 py-1.5 rounded-xl font-cute text-xs transition bg-brand-500 text-white font-semibold shadow-sm";
+                document.getElementById('tabFilterEbook').className = "px-3.5 py-1.5 rounded-xl font-cute text-xs transition bg-brand-500 text-white font-bold shadow-sm";
             }
             renderHome();
         }
 
         // Render Home
         function renderHome() {
-            document.getElementById('navSiteName').innerHTML = `${appConfig.siteName} <span class="text-xs bg-brand-100 text-brand-700 px-2 py-0.5 rounded-full font-body font-normal">Official</span>`;
+            document.getElementById('navSiteName').innerHTML = `${appConfig.siteName} <span class="text-xs bg-brand-100 text-black px-2.5 py-0.5 rounded-full font-body font-semibold border border-brand-200">Official</span>`;
             document.getElementById('footerSiteName').innerText = appConfig.siteName;
             document.getElementById('authorName').innerText = appConfig.authorName;
             document.getElementById('authorBio').innerText = appConfig.authorBio;
@@ -1505,24 +1500,24 @@
 
             filtered.forEach(novel => {
                 const card = document.createElement('div');
-                card.className = "bg-white/90 backdrop-blur-sm rounded-3xl border-2 border-brand-100 p-5 shadow-sm hover:shadow-cute-green transition duration-300 flex flex-col sm:flex-row gap-5 group";
+                card.className = "bg-white/95 backdrop-blur-sm rounded-3xl border-2 border-brand-200 p-5 shadow-sm hover:shadow-cute-green transition duration-300 flex flex-col sm:flex-row gap-5 group";
                 
                 const isComic = novel.type === 'comic';
                 const typeBadge = isComic
-                    ? `<span class="text-xs font-cute text-teal-800 bg-teal-100 px-2.5 py-0.5 rounded-full border border-teal-200 font-bold">🎨 การ์ตูน (ภาพ AI)</span>`
-                    : `<span class="text-xs font-cute text-brand-700 bg-brand-100 px-2.5 py-0.5 rounded-full border border-brand-200">📖 นิยายบรรยาย</span>`;
+                    ? `<span class="text-xs font-cute text-black bg-teal-100 px-2.5 py-0.5 rounded-full border border-teal-300 font-bold">🎨 การ์ตูน (ภาพ AI)</span>`
+                    : `<span class="text-xs font-cute text-black bg-brand-100 px-2.5 py-0.5 rounded-full border border-brand-300 font-bold">📖 นิยายบรรยาย</span>`;
 
                 const isCompleted = novel.status === "จบแล้ว";
                 const statusBadge = isCompleted
-                    ? `<span class="absolute top-2 left-2 bg-emerald-500 text-white font-cute text-[10px] px-2.5 py-0.5 rounded-full shadow-sm">✓ จบแล้ว</span>`
-                    : `<span class="absolute top-2 left-2 bg-brand-500 text-white font-cute text-[10px] px-2.5 py-0.5 rounded-full shadow-sm">กำลังออนแอร์</span>`;
+                    ? `<span class="absolute top-2 left-2 bg-emerald-600 text-white font-cute text-[10px] px-2.5 py-0.5 rounded-full shadow-sm font-bold">✓ จบแล้ว</span>`
+                    : `<span class="absolute top-2 left-2 bg-brand-500 text-white font-cute text-[10px] px-2.5 py-0.5 rounded-full shadow-sm font-bold">กำลังออนแอร์</span>`;
 
                 const ebookTag = novel.hasEbook 
-                    ? `<button onclick="openEbookModal('${novel.id}')" class="text-[10px] font-cute text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full flex items-center gap-1 hover:bg-emerald-100 transition"><i class="fa-solid fa-file-pdf text-red-500"></i> E-book ${novel.ebookPrice}฿</button>` 
+                    ? `<button onclick="openEbookModal('${novel.id}')" class="text-[10px] font-cute text-black font-bold bg-emerald-50 border border-emerald-300 px-2 py-0.5 rounded-full flex items-center gap-1 hover:bg-emerald-100 transition"><i class="fa-solid fa-file-pdf text-red-600"></i> E-book ${novel.ebookPrice}฿</button>` 
                     : '';
 
                 card.innerHTML = `
-                    <div class="w-full sm:w-40 h-56 rounded-2xl overflow-hidden shadow-sm relative flex-shrink-0 bg-brand-50">
+                    <div class="w-full sm:w-40 h-56 rounded-2xl overflow-hidden shadow-sm relative flex-shrink-0 bg-brand-50 border border-gray-200">
                         <img src="${novel.cover}" alt="${novel.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         ${statusBadge}
                     </div>
@@ -1530,28 +1525,28 @@
                         <div class="space-y-1.5">
                             <div class="flex flex-wrap items-center gap-1.5">
                                 ${typeBadge}
-                                <span class="text-xs font-cute text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-100">
+                                <span class="text-xs font-cute text-black font-bold bg-purple-100 px-2.5 py-0.5 rounded-full border border-purple-200">
                                     ${novel.category}
                                 </span>
                                 ${ebookTag}
                             </div>
-                            <h4 class="text-xl font-cute font-bold text-gray-800 group-hover:text-brand-600 transition">
+                            <h4 class="text-xl font-cute font-bold text-black group-hover:text-brand-700 transition">
                                 ${novel.title}
                             </h4>
-                            <p class="text-xs text-brand-600 font-cute font-medium">${novel.tagline || ''}</p>
-                            <p class="text-xs text-gray-500 line-clamp-3 leading-relaxed">${novel.synopsis || ''}</p>
+                            <p class="text-xs text-black font-cute font-semibold">${novel.tagline || ''}</p>
+                            <p class="text-xs text-black font-normal line-clamp-3 leading-relaxed">${novel.synopsis || ''}</p>
                         </div>
-                        <div class="pt-2 border-t border-brand-50 flex items-center justify-between">
-                            <div class="flex items-center gap-3 text-xs text-gray-400">
-                                <span><i class="fa-solid fa-eye text-brand-400"></i> ${(novel.views || 0).toLocaleString()}</span>
-                                <span><i class="fa-solid fa-heart text-rose-300"></i> ${(novel.hearts || 0).toLocaleString()}</span>
-                                <span><i class="fa-solid fa-list-ol text-amber-300"></i> ${(novel.chapters || []).length} ตอน</span>
+                        <div class="pt-2 border-t border-brand-100 flex items-center justify-between">
+                            <div class="flex items-center gap-3 text-xs text-black font-semibold">
+                                <span><i class="fa-solid fa-eye text-brand-600"></i> ${(novel.views || 0).toLocaleString()}</span>
+                                <span><i class="fa-solid fa-heart text-rose-500"></i> ${(novel.hearts || 0).toLocaleString()}</span>
+                                <span><i class="fa-solid fa-list-ol text-amber-600"></i> ${(novel.chapters || []).length} ตอน</span>
                             </div>
                             <div class="flex items-center gap-2">
-                                <button onclick="toggleBookshelf('${novel.id}')" class="p-1.5 rounded-xl border text-xs text-gray-500 hover:text-emerald-700 transition" title="เก็บเข้าชั้น">
-                                    <i class="${isNovelInBookshelf(novel.id) ? 'fa-solid text-emerald-600' : 'fa-regular'} fa-bookmark"></i>
+                                <button onclick="toggleBookshelf('${novel.id}')" class="p-2 rounded-xl border border-gray-300 text-xs text-black hover:text-emerald-700 transition font-bold" title="เก็บเข้าชั้น">
+                                    <i class="${isNovelInBookshelf(novel.id) ? 'fa-solid text-emerald-700' : 'fa-regular'} fa-bookmark"></i>
                                 </button>
-                                <button onclick="openNovelDetail('${novel.id}')" class="bg-brand-50 hover:bg-brand-500 hover:text-white text-brand-700 text-xs font-cute font-bold px-3.5 py-1.5 rounded-xl transition shadow-sm active:scale-95">
+                                <button onclick="openNovelDetail('${novel.id}')" class="bg-brand-50 hover:bg-brand-500 hover:text-white text-black text-xs font-cute font-bold px-3.5 py-1.5 rounded-xl transition shadow-sm active:scale-95 border border-brand-300">
                                     ${isComic ? 'ชมการ์ตูน ✨' : 'อ่านเลย ✨'}
                                 </button>
                             </div>
@@ -1571,16 +1566,16 @@
 
             history.forEach(d => {
                 const item = document.createElement('div');
-                item.className = "bg-white/80 rounded-2xl p-3 border border-brand-100 flex items-start gap-2.5 shadow-sm";
+                item.className = "bg-white rounded-2xl p-3 border border-brand-200 flex items-start gap-2.5 shadow-sm";
                 item.innerHTML = `
                     <span class="text-2xl">${d.sticker}</span>
                     <div class="flex-1 min-w-0">
                         <div class="flex items-center justify-between">
-                            <h5 class="font-cute font-bold text-xs text-gray-800 truncate">${d.name}</h5>
-                            <span class="text-[10px] font-cute text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded-full font-bold">+${d.coins} 🪙</span>
+                            <h5 class="font-cute font-bold text-xs text-black truncate">${d.name}</h5>
+                            <span class="text-[10px] font-cute text-black bg-amber-100 px-2 py-0.5 rounded-full font-bold border border-amber-300">+${d.coins} 🪙</span>
                         </div>
-                        <p class="text-xs text-gray-600 font-cute truncate mt-0.5">"${d.msg}"</p>
-                        <span class="text-[9px] text-gray-400">${d.time || 'เมื่อสักครู่'}</span>
+                        <p class="text-xs text-black font-cute truncate mt-0.5 font-medium">"${d.msg}"</p>
+                        <span class="text-[9px] text-black font-semibold">${d.time || 'เมื่อสักครู่'}</span>
                     </div>
                 `;
                 list.appendChild(item);
@@ -1614,8 +1609,8 @@
             const statusElem = document.getElementById('detailStatus');
             statusElem.innerText = currentNovel.status;
             statusElem.className = isCompleted 
-                ? "text-xs font-cute px-3 py-1 rounded-full font-bold bg-emerald-100 text-emerald-700"
-                : "text-xs font-cute px-3 py-1 rounded-full font-bold bg-brand-100 text-brand-700";
+                ? "text-xs font-cute px-3 py-1 rounded-full font-bold bg-emerald-100 text-black border border-emerald-300"
+                : "text-xs font-cute px-3 py-1 rounded-full font-bold bg-brand-100 text-black border border-brand-300";
 
             document.getElementById('detailSynopsis').innerText = currentNovel.synopsis;
             document.getElementById('detailViews').innerText = (currentNovel.views || 0).toLocaleString();
@@ -1624,7 +1619,6 @@
             updateNovelDetailHeartButton();
             updateDetailBookshelfButton();
 
-            // E-Book Button in Novel Detail
             const ebookContainer = document.getElementById('detailEbookContainer');
             if (currentNovel.hasEbook) {
                 ebookContainer.innerHTML = `
@@ -1656,38 +1650,38 @@
 
             const chapters = currentNovel.chapters || [];
             if (chapters.length === 0) {
-                container.innerHTML = `<div class="py-8 text-center text-xs text-gray-400 font-cute">ยังไม่มีตอนในเรื่องนี้ สามารถเข้าสู่ห้องนักเขียนเพื่อเพิ่มตอนได้เลยค่ะ</div>`;
+                container.innerHTML = `<div class="py-8 text-center text-xs text-black font-cute font-medium">ยังไม่มีตอนในเรื่องนี้ สามารถเข้าสู่ห้องนักเขียนเพื่อเพิ่มตอนได้เลยค่ะ</div>`;
                 return;
             }
 
             chapters.forEach(ch => {
                 const unlocked = !ch.isLocked || isChapterUnlocked(currentNovel.id, ch.id);
                 const item = document.createElement('div');
-                item.className = "py-3.5 px-3 rounded-2xl hover:bg-brand-50/50 transition flex items-center justify-between cursor-pointer group";
+                item.className = "py-3.5 px-3 rounded-2xl hover:bg-brand-50 transition flex items-center justify-between cursor-pointer group";
                 item.onclick = () => openReader(ch.id);
 
                 let badgeHtml = '';
                 if (!ch.isLocked) {
-                    badgeHtml = `<span class="text-xs font-cute text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">อ่านฟรี</span>`;
+                    badgeHtml = `<span class="text-xs font-cute text-black font-bold bg-emerald-100 px-2.5 py-1 rounded-full border border-emerald-300">อ่านฟรี</span>`;
                 } else if (unlocked) {
-                    badgeHtml = `<span class="text-xs font-cute text-brand-800 bg-brand-100 px-2.5 py-1 rounded-full border border-brand-200">ปลดล็อกแล้ว ✨</span>`;
+                    badgeHtml = `<span class="text-xs font-cute text-black font-bold bg-brand-100 px-2.5 py-1 rounded-full border border-brand-300">ปลดล็อกแล้ว ✨</span>`;
                 } else {
-                    badgeHtml = `<span class="text-xs font-cute text-amber-800 bg-amber-100 px-2.5 py-1 rounded-full border border-amber-200">🔒 ติดเหรียญ (${ch.coinPrice} 🪙)</span>`;
+                    badgeHtml = `<span class="text-xs font-cute text-black font-bold bg-amber-100 px-2.5 py-1 rounded-full border border-amber-300">🔒 ติดเหรียญ (${ch.coinPrice} 🪙)</span>`;
                 }
 
                 const isComic = currentNovel.type === 'comic' || (ch.images && ch.images.length > 0);
-                const iconTag = isComic ? '<i class="fa-solid fa-images text-teal-600 mr-1.5"></i>' : '<i class="fa-solid fa-book-open text-brand-600 mr-1.5"></i>';
+                const iconTag = isComic ? '<i class="fa-solid fa-images text-teal-700 mr-1.5"></i>' : '<i class="fa-solid fa-book-open text-brand-700 mr-1.5"></i>';
 
                 item.innerHTML = `
                     <div class="flex items-center gap-3">
-                        <span class="w-8 h-8 rounded-xl bg-brand-100 text-brand-700 text-xs font-cute font-bold flex items-center justify-center">
+                        <span class="w-8 h-8 rounded-xl bg-brand-100 text-black text-xs font-cute font-bold flex items-center justify-center border border-brand-300">
                             ${ch.id}
                         </span>
                         <div>
-                            <h5 class="text-sm font-cute font-bold text-gray-800 group-hover:text-brand-600 transition flex items-center">
+                            <h5 class="text-sm font-cute font-bold text-black group-hover:text-brand-700 transition flex items-center">
                                 ${iconTag} ${ch.title}
                             </h5>
-                            <span class="text-[11px] text-gray-400">${ch.date || 'ล่าสุด'} ${isComic && ch.images ? `• ${ch.images.length} ภาพ` : ''}</span>
+                            <span class="text-[11px] text-black font-medium">${ch.date || 'ล่าสุด'} ${isComic && ch.images ? `• ${ch.images.length} ภาพ` : ''}</span>
                         </div>
                     </div>
                     <div>
@@ -1735,7 +1729,7 @@
                     currentChapter.images.forEach((imgSrc, i) => {
                         const img = document.createElement('img');
                         img.src = imgSrc;
-                        img.className = "w-full rounded-2xl shadow-sm border border-brand-100 object-contain mx-auto";
+                        img.className = "w-full rounded-2xl shadow-sm border border-brand-200 object-contain mx-auto";
                         img.alt = `Panel ${i+1}`;
                         comicPanels.appendChild(img);
                     });
@@ -1758,7 +1752,7 @@
                     comicPanels.classList.remove('hidden');
                     const previewImg = document.createElement('img');
                     previewImg.src = currentChapter.images[0];
-                    previewImg.className = "w-full rounded-2xl shadow-sm border border-brand-100 object-contain mx-auto blur-sm";
+                    previewImg.className = "w-full rounded-2xl shadow-sm border border-brand-200 object-contain mx-auto blur-sm";
                     comicPanels.appendChild(previewImg);
                 } else {
                     comicPanels.classList.add('hidden');
@@ -1810,24 +1804,24 @@
             container.innerHTML = '';
 
             if (comments.length === 0) {
-                container.innerHTML = `<div class="text-xs text-gray-400 font-cute text-center py-4">ยังไม่มีคอมเมนต์ในตอนนี้ เป็นคนแรกที่คอมเมนต์ได้เลยค่ะ! 💬</div>`;
+                container.innerHTML = `<div class="text-xs text-black font-cute text-center py-4 font-semibold">ยังไม่มีคอมเมนต์ในตอนนี้ เป็นคนแรกที่คอมเมนต์ได้เลยค่ะ! 💬</div>`;
                 return;
             }
 
             const cuteAvatars = ['🍀', '🌸', '🍵', '🎀', '🍰', '🍓', '✨'];
             comments.forEach((c, idx) => {
                 const item = document.createElement('div');
-                item.className = "bg-white rounded-2xl p-3.5 border border-brand-100 shadow-sm flex items-start gap-3";
+                item.className = "bg-white rounded-2xl p-3.5 border border-gray-300 shadow-sm flex items-start gap-3";
                 item.innerHTML = `
-                    <div class="w-8 h-8 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-sm flex-shrink-0">
+                    <div class="w-8 h-8 rounded-full bg-brand-100 text-black flex items-center justify-center text-sm flex-shrink-0 font-bold border border-brand-200">
                         ${cuteAvatars[idx % cuteAvatars.length]}
                     </div>
                     <div class="flex-1 space-y-1">
                         <div class="flex items-center justify-between">
-                            <h5 class="font-cute font-bold text-xs text-gray-800">${c.author}</h5>
-                            <span class="text-[10px] text-gray-400">${c.time}</span>
+                            <h5 class="font-cute font-bold text-xs text-black">${c.author}</h5>
+                            <span class="text-[10px] text-black font-medium">${c.time}</span>
                         </div>
-                        <p class="text-xs text-gray-600 font-cute leading-relaxed">${c.text}</p>
+                        <p class="text-xs text-black font-cute leading-relaxed font-normal">${c.text}</p>
                     </div>
                 `;
                 container.appendChild(item);
@@ -1890,34 +1884,38 @@
             document.getElementById('readerContentArea').style.fontSize = `${currentFontSize}px`;
         }
 
-        // ================= READER THEMES: กลางวัน / สบายตา / กลางคืน =================
+        // ================= READER THEMES (PURE BLACK TEXT IN LIGHT MODES) =================
         function setReaderTheme(theme) {
             currentReaderTheme = theme;
             const paper = document.getElementById('readerPaper');
             const headerBox = document.getElementById('readerHeaderBox');
             const footerActions = document.getElementById('readerFooterActionsBox');
+            const contentArea = document.getElementById('readerContentArea');
             const btnDay = document.getElementById('btnThemeDay');
             const btnEye = document.getElementById('btnThemeEyecare');
             const btnNight = document.getElementById('btnThemeNight');
 
             [btnDay, btnEye, btnNight].forEach(b => {
-                b.className = "px-2.5 py-1 rounded-lg text-xs font-cute transition flex items-center gap-1 text-gray-600 hover:text-brand-700";
+                b.className = "px-2.5 py-1 rounded-lg text-xs font-cute transition flex items-center gap-1 text-black hover:text-brand-800 font-semibold";
             });
 
             if (theme === 'day') {
-                paper.className = "rounded-3xl border border-gray-200 p-4 sm:p-10 shadow-sm transition-colors duration-200 min-h-[60vh] max-w-3xl mx-auto space-y-6 bg-[#FFFFFF] text-[#1F2937]";
-                headerBox.className = "text-center space-y-2 border-b border-gray-100 pb-6";
-                footerActions.className = "border-t border-gray-100 pt-8 mt-12 text-center space-y-4";
-                btnDay.className = "px-2.5 py-1 rounded-lg text-xs font-cute transition flex items-center gap-1 bg-white text-gray-900 shadow-sm font-bold border border-gray-200";
+                paper.className = "rounded-3xl border border-gray-300 p-4 sm:p-10 shadow-sm transition-colors duration-200 min-h-[60vh] max-w-3xl mx-auto space-y-6 bg-[#FFFFFF] text-black";
+                headerBox.className = "text-center space-y-2 border-b border-gray-200 pb-6 text-black";
+                footerActions.className = "border-t border-gray-200 pt-8 mt-12 text-center space-y-4 text-black";
+                contentArea.className = "reader-font leading-loose whitespace-pre-line text-lg tracking-wide space-y-4 text-black font-normal";
+                btnDay.className = "px-2.5 py-1 rounded-lg text-xs font-cute transition flex items-center gap-1 bg-white text-black shadow-sm font-bold border border-gray-300";
             } else if (theme === 'eyecare') {
-                paper.className = "rounded-3xl border border-brand-200 p-4 sm:p-10 shadow-sm transition-colors duration-200 min-h-[60vh] max-w-3xl mx-auto space-y-6 bg-[#F4FAF6] text-[#1B382B]";
-                headerBox.className = "text-center space-y-2 border-b border-brand-200/50 pb-6";
-                footerActions.className = "border-t border-brand-200/50 pt-8 mt-12 text-center space-y-4";
+                paper.className = "rounded-3xl border border-brand-300 p-4 sm:p-10 shadow-sm transition-colors duration-200 min-h-[60vh] max-w-3xl mx-auto space-y-6 bg-[#F4FAF6] text-black";
+                headerBox.className = "text-center space-y-2 border-b border-brand-200 pb-6 text-black";
+                footerActions.className = "border-t border-brand-200 pt-8 mt-12 text-center space-y-4 text-black";
+                contentArea.className = "reader-font leading-loose whitespace-pre-line text-lg tracking-wide space-y-4 text-black font-normal";
                 btnEye.className = "px-2.5 py-1 rounded-lg text-xs font-cute transition flex items-center gap-1 bg-brand-500 text-white shadow-sm font-bold";
             } else if (theme === 'night') {
                 paper.className = "rounded-3xl border border-emerald-950 p-4 sm:p-10 shadow-sm transition-colors duration-200 min-h-[60vh] max-w-3xl mx-auto space-y-6 bg-[#172A20] text-[#E2EFE7]";
-                headerBox.className = "text-center space-y-2 border-b border-emerald-900/60 pb-6";
-                footerActions.className = "border-t border-emerald-900/60 pt-8 mt-12 text-center space-y-4";
+                headerBox.className = "text-center space-y-2 border-b border-emerald-900/60 pb-6 text-[#E2EFE7]";
+                footerActions.className = "border-t border-emerald-900/60 pt-8 mt-12 text-center space-y-4 text-[#E2EFE7]";
+                contentArea.className = "reader-font leading-loose whitespace-pre-line text-lg tracking-wide space-y-4 text-[#E2EFE7] font-normal";
                 btnNight.className = "px-2.5 py-1 rounded-lg text-xs font-cute transition flex items-center gap-1 bg-gray-800 text-emerald-300 shadow-sm font-bold border border-emerald-800";
             }
         }
@@ -2044,24 +2042,24 @@
 
             appNovels.forEach(novel => {
                 const card = document.createElement('div');
-                card.className = "bg-white rounded-3xl border-2 border-brand-100 p-5 shadow-sm space-y-4";
+                card.className = "bg-white rounded-3xl border-2 border-brand-200 p-5 shadow-sm space-y-4";
                 
                 let chaptersHtml = '';
                 const chapters = novel.chapters || [];
                 if (chapters.length === 0) {
-                    chaptersHtml = `<div class="text-xs text-gray-400 py-2">ยังไม่มีตอนในเรื่องนี้ สามารถกดปุ่ม + เขียนตอนใหม่ ได้เลยค่ะ</div>`;
+                    chaptersHtml = `<div class="text-xs text-black py-2 font-medium">ยังไม่มีตอนในเรื่องนี้ สามารถกดปุ่ม + เขียนตอนใหม่ ได้เลยค่ะ</div>`;
                 } else {
                     chaptersHtml = chapters.map(c => `
-                        <div class="flex items-center justify-between py-2 px-3 bg-brand-50/40 rounded-xl text-xs">
+                        <div class="flex items-center justify-between py-2 px-3 bg-brand-50 rounded-xl text-xs border border-brand-100">
                             <div class="flex items-center gap-2">
-                                <span class="font-bold text-gray-700">${c.id}.</span>
-                                <span class="text-gray-800 font-cute">${c.title}</span>
-                                ${c.images && c.images.length > 0 ? `<span class="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full font-bold">🖼️ ${c.images.length} ภาพ</span>` : ''}
-                                ${c.isLocked ? `<span class="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-bold">ติดเหรียญ ${c.coinPrice} 🪙</span>` : `<span class="text-[10px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full">อ่านฟรี</span>`}
+                                <span class="font-bold text-black">${c.id}.</span>
+                                <span class="text-black font-cute font-bold">${c.title}</span>
+                                ${c.images && c.images.length > 0 ? `<span class="text-[10px] bg-teal-100 text-black px-2 py-0.5 rounded-full font-bold border border-teal-300">🖼️ ${c.images.length} ภาพ</span>` : ''}
+                                ${c.isLocked ? `<span class="text-[10px] bg-amber-100 text-black px-2 py-0.5 rounded-full font-bold border border-amber-300">ติดเหรียญ ${c.coinPrice} 🪙</span>` : `<span class="text-[10px] bg-emerald-100 text-black px-2 py-0.5 rounded-full font-bold border border-emerald-300">อ่านฟรี</span>`}
                             </div>
                             <div class="flex items-center gap-2">
-                                <button onclick="openEditChapterModal('${novel.id}', ${c.id})" class="text-brand-700 hover:text-brand-900 font-cute">✏️ แก้ไข</button>
-                                <button onclick="deleteChapter('${novel.id}', ${c.id})" class="text-rose-500 hover:text-rose-700 font-cute">🗑️ ลบ</button>
+                                <button onclick="openEditChapterModal('${novel.id}', ${c.id})" class="text-black hover:text-brand-900 font-cute font-bold">✏️ แก้ไข</button>
+                                <button onclick="deleteChapter('${novel.id}', ${c.id})" class="text-rose-600 hover:text-rose-800 font-cute font-bold">🗑️ ลบ</button>
                             </div>
                         </div>
                     `).join('');
@@ -2073,54 +2071,54 @@
                 card.innerHTML = `
                     <div class="flex flex-col sm:flex-row gap-4 items-start justify-between pb-3 border-b border-brand-100">
                         <div class="flex gap-3">
-                            <img src="${novel.cover}" class="w-16 h-22 rounded-xl object-cover border border-brand-200 bg-brand-50">
+                            <img src="${novel.cover}" class="w-16 h-22 rounded-xl object-cover border border-brand-300 bg-brand-50">
                             <div>
                                 <div class="flex items-center gap-1.5">
-                                    <span class="text-[10px] font-cute ${isComic ? 'bg-teal-100 text-teal-800' : 'bg-brand-100 text-brand-700'} px-2 py-0.5 rounded-full font-bold">
+                                    <span class="text-[10px] font-cute ${isComic ? 'bg-teal-100 text-black' : 'bg-brand-100 text-black'} px-2 py-0.5 rounded-full font-bold border border-brand-200">
                                         ${isComic ? '🎨 การ์ตูน (ภาพ AI)' : '📖 นิยายบรรยาย'}
                                     </span>
-                                    <span class="text-[10px] font-cute ${isCompleted ? 'bg-emerald-100 text-emerald-700 font-bold' : 'bg-brand-100 text-brand-700'} px-2 py-0.5 rounded-full">
+                                    <span class="text-[10px] font-cute ${isCompleted ? 'bg-emerald-100 text-black font-bold' : 'bg-brand-100 text-black'} px-2 py-0.5 rounded-full border border-brand-200">
                                         ${novel.status}
                                     </span>
-                                    ${novel.hasEbook ? `<span class="text-[10px] font-cute bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-full">E-book ${novel.ebookPrice}฿</span>` : ''}
+                                    ${novel.hasEbook ? `<span class="text-[10px] font-cute bg-emerald-50 text-black border border-emerald-300 px-2 py-0.5 rounded-full font-bold">E-book ${novel.ebookPrice}฿</span>` : ''}
                                 </div>
-                                <h4 class="text-lg font-cute font-bold text-gray-800 mt-1">${novel.title}</h4>
-                                <div class="text-xs text-gray-500 font-cute flex items-center gap-2 mt-0.5">
-                                    <span>ยอดวิวจริง: <strong class="text-brand-600">${(novel.views || 0).toLocaleString()}</strong></span>
+                                <h4 class="text-lg font-cute font-bold text-black mt-1">${novel.title}</h4>
+                                <div class="text-xs text-black font-cute flex items-center gap-2 mt-0.5 font-semibold">
+                                    <span>ยอดวิวจริง: <strong class="text-black">${(novel.views || 0).toLocaleString()}</strong></span>
                                     <span>• ${chapters.length} ตอน</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="flex flex-wrap items-center gap-2">
-                            <button onclick="toggleNovelCompletion('${novel.id}')" class="text-xs font-cute px-3 py-1.5 rounded-xl transition shadow-sm ${
+                            <button onclick="toggleNovelCompletion('${novel.id}')" class="text-xs font-cute px-3 py-1.5 rounded-xl transition shadow-sm font-bold ${
                                 isCompleted 
-                                ? 'bg-emerald-100 text-emerald-800 border border-emerald-300 hover:bg-emerald-200' 
-                                : 'bg-emerald-500 hover:bg-emerald-600 text-white'
+                                ? 'bg-emerald-100 text-black border border-emerald-400 hover:bg-emerald-200' 
+                                : 'bg-emerald-600 hover:bg-emerald-700 text-white'
                             }">
                                 ${isCompleted ? '✓ จบเรื่องแล้ว (กดเปลี่ยนกลับ)' : '🏁 กดจบเรื่องนี้'}
                             </button>
 
-                            <div class="inline-flex items-center bg-gray-50 border border-gray-200 rounded-xl p-0.5">
-                                <button onclick="addNovelViews('${novel.id}', 100)" class="text-[11px] font-cute text-gray-600 hover:bg-white px-2 py-1 rounded-lg" title="เพิ่ม 100 วิว">+100</button>
-                                <button onclick="addNovelViews('${novel.id}', 500)" class="text-[11px] font-cute text-gray-600 hover:bg-white px-2 py-1 rounded-lg" title="เพิ่ม 500 วิว">+500</button>
-                                <button onclick="setCustomNovelViews('${novel.id}')" class="text-[11px] font-cute text-brand-700 hover:bg-white px-2 py-1 rounded-lg" title="ตั้งค่ายอดวิวเอง">✏️ วิว</button>
+                            <div class="inline-flex items-center bg-gray-100 border border-gray-300 rounded-xl p-0.5">
+                                <button onclick="addNovelViews('${novel.id}', 100)" class="text-[11px] font-cute text-black font-bold hover:bg-white px-2 py-1 rounded-lg" title="เพิ่ม 100 วิว">+100</button>
+                                <button onclick="addNovelViews('${novel.id}', 500)" class="text-[11px] font-cute text-black font-bold hover:bg-white px-2 py-1 rounded-lg" title="เพิ่ม 500 วิว">+500</button>
+                                <button onclick="setCustomNovelViews('${novel.id}')" class="text-[11px] font-cute text-black font-bold hover:bg-white px-2 py-1 rounded-lg" title="ตั้งค่ายอดวิวเอง">✏️ วิว</button>
                             </div>
 
-                            <button onclick="openCreateChapterModal('${novel.id}')" class="bg-brand-500 hover:bg-brand-600 text-white font-cute text-xs px-3 py-1.5 rounded-xl shadow-sm transition flex items-center gap-1">
+                            <button onclick="openCreateChapterModal('${novel.id}')" class="bg-brand-500 hover:bg-brand-600 text-white font-cute text-xs px-3 py-1.5 rounded-xl shadow-sm transition flex items-center gap-1 font-bold">
                                 <i class="fa-solid fa-feather"></i> + เขียนตอน
                             </button>
-                            <button onclick="openEditNovelModal('${novel.id}')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-cute text-xs px-2.5 py-1.5 rounded-xl transition">
+                            <button onclick="openEditNovelModal('${novel.id}')" class="bg-gray-100 hover:bg-gray-200 text-black font-cute text-xs px-2.5 py-1.5 rounded-xl transition font-bold border border-gray-300">
                                 ✏️
                             </button>
-                            <button onclick="deleteNovel('${novel.id}')" class="bg-rose-50 hover:bg-rose-100 text-rose-600 font-cute text-xs px-2.5 py-1.5 rounded-xl transition">
+                            <button onclick="deleteNovel('${novel.id}')" class="bg-rose-50 hover:bg-rose-100 text-rose-700 font-cute text-xs px-2.5 py-1.5 rounded-xl transition font-bold border border-rose-200">
                                 🗑️
                             </button>
                         </div>
                     </div>
 
                     <div class="space-y-1.5">
-                        <span class="text-xs font-cute text-gray-600 block font-semibold">ตอนทั้งหมดในเรื่องนี้:</span>
+                        <span class="text-xs font-cute text-black block font-bold">ตอนทั้งหมดในเรื่องนี้:</span>
                         <div class="space-y-1.5">
                             ${chaptersHtml}
                         </div>
@@ -2344,12 +2342,12 @@
             counter.innerText = `${words.toLocaleString()} / 1,200 คำ (${text.length.toLocaleString()} ตัวอักษร)`;
 
             if (words > 1200) {
-                counter.className = "text-[11px] font-cute text-rose-500 font-bold";
+                counter.className = "text-[11px] font-cute text-rose-600 font-bold";
                 warning.classList.remove('hidden');
                 btnSave.disabled = true;
                 btnSave.classList.add('opacity-50', 'cursor-not-allowed');
             } else {
-                counter.className = "text-[11px] font-cute text-gray-500";
+                counter.className = "text-[11px] font-cute text-black font-bold";
                 warning.classList.add('hidden');
                 btnSave.disabled = false;
                 btnSave.classList.remove('opacity-50', 'cursor-not-allowed');
@@ -2462,16 +2460,16 @@
                 const card = document.createElement('div');
                 const isSelected = selectedTopupPkg.id === pkg.id;
                 card.className = `p-3 rounded-2xl border-2 cursor-pointer transition text-center space-y-1 ${
-                    isSelected ? 'border-amber-400 bg-amber-50 shadow-sm' : 'border-gray-200 hover:border-amber-300'
+                    isSelected ? 'border-amber-500 bg-amber-50 shadow-sm' : 'border-gray-300 hover:border-amber-400'
                 }`;
                 card.onclick = () => {
                     selectedTopupPkg = pkg;
                     renderTopupPackages();
                 };
                 card.innerHTML = `
-                    <span class="text-[10px] font-cute text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full font-bold">${pkg.tag}</span>
-                    <div class="text-xl font-bold font-cute text-gray-800">${pkg.coins + pkg.bonus} 🪙</div>
-                    <div class="text-xs text-gray-500 font-cute">ราคา ${pkg.price} บาท</div>
+                    <span class="text-[10px] font-cute text-black bg-amber-200 px-2 py-0.5 rounded-full font-bold border border-amber-300">${pkg.tag}</span>
+                    <div class="text-xl font-bold font-cute text-black">${pkg.coins + pkg.bonus} 🪙</div>
+                    <div class="text-xs text-black font-cute font-semibold">ราคา ${pkg.price} บาท</div>
                 `;
                 grid.appendChild(card);
             });
@@ -2504,7 +2502,7 @@
                 const card = document.createElement('div');
                 const isSelected = selectedSticker.id === stk.id;
                 card.className = `p-2.5 rounded-2xl border-2 cursor-pointer transition text-center space-y-1 ${
-                    isSelected ? 'border-brand-500 bg-brand-50 shadow-cute-green' : 'border-gray-200 hover:border-brand-300'
+                    isSelected ? 'border-brand-500 bg-brand-50 shadow-cute-green' : 'border-gray-300 hover:border-brand-400'
                 }`;
                 card.onclick = () => {
                     selectedSticker = stk;
@@ -2513,8 +2511,8 @@
                 };
                 card.innerHTML = `
                     <div class="text-3xl">${stk.icon}</div>
-                    <div class="text-xs font-cute font-bold text-gray-800 truncate">${stk.name}</div>
-                    <div class="text-[11px] font-cute text-amber-700 font-bold">${stk.coins} 🪙</div>
+                    <div class="text-xs font-cute font-bold text-black truncate">${stk.name}</div>
+                    <div class="text-[11px] font-cute text-black font-bold">${stk.coins} 🪙</div>
                 `;
                 grid.appendChild(card);
             });
