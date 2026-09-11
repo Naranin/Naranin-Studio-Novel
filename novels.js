@@ -1,19 +1,19 @@
 /**
- * ข้อมูลนิยายและการ์ตูน / นิยายภาพ สำหรับ Naranin Studio
- * โทนสี ชมพูพาสเทล - เขียวพาสเทล - ฟ้าพาสเทล
+ * ข้อมูลนิยาย การ์ตูน และระบบ E-book สำหรับ Naranin Studio
+ * โทนเขียวพาสเทล (เกิดวันพุธเหนี่ยวทรัพย์) สดใส สบายตา
  */
 const SITE_CONFIG = {
     siteName: "Naranin Studio",
-    siteTagline: "คลังนิยายรัก & นิยายภาพการ์ตูนสุดอบอุ่น 🌸🍀🫐",
+    siteTagline: "คลังนิยายรัก & การ์ตูนสุดอบอุ่น 🍀🌿✨",
     authorName: "นารานินทร์ (Naranin)",
-    authorBio: "นักเขียนนิยายโรแมนติกดราม่า และนิยายภาพการ์ตูน 💖 ถ่ายทอดความรู้สึกผ่านตัวอักษรและภาพเรื่องราว ขอบคุณทุกกำลังใจและการสนับสนุนของนักอ่านทุกคนนะคะ ✨",
+    authorBio: "นักเขียนนิยายโรแมนติกดราม่า และการ์ตูนเรื่องราวสุดฟิน 💚 ขอบคุณทุกกำลังใจและการสนับสนุนของนักอ่านทุกคนนะคะ 🍀",
     authorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80",
     bankName: "ธนาคารกรุงเทพ (Bangkok Bank)",
     bankAccountNumber: "XXX-X-XXXXX-X",
     bankAccountName: "นารานินทร์ (Naranin)",
     bankQrCode: "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=BANGKOK-BANK-ACCOUNT-DEMO",
     writerPin: "785",
-    themeName: "Pastel Tricolor (Pink-Green-Blue)",
+    themeName: "Pastel Green",
     socialLinks: {
         facebook: "https://facebook.com",
         tiktok: "https://tiktok.com"
@@ -22,59 +22,21 @@ const SITE_CONFIG = {
 
 const NOVELS = [
     {
-        id: "comic-1",
-        type: "comic", // comic = นิยายภาพ / การ์ตูน
-        title: "รักลับๆ ของนายต้นชา (Webtoon)",
-        tagline: "เมื่อบาริสต้าหนุ่มมาดนิ่งต้องมาเป็นพี่เลี้ยงวาดภาพจำเป็น",
-        category: "การ์ตูนโรแมนติก",
-        status: "กำลังออนแอร์",
-        badgeColor: "bg-sky-400",
-        cover: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=600&auto=format&fit=crop&q=80",
-        synopsis: "เรื่องราวของนักเขียนสาวสุดโก๊ะที่ติดกาแฟมัทฉะเป็นชีวิตจิตใจ กับบาริสต้าหนุ่มประจำร้านชาเขียวผู้ซ่อนความลับสุดน่ารักเอาไว้! (นิยายภาพการ์ตูนช่อง อ่านเพลิน เลื่อนดูภาพฟินๆ)",
-        views: 18500,
-        hearts: 3420,
-        chapters: [
-            {
-                id: 1,
-                title: "EP. 1: กลิ่นมัทฉะในวันฟ้าใส",
-                date: "2 ก.ย. 2026",
-                isLocked: false,
-                coinPrice: 0,
-                likes: 128,
-                content: "ยินดีต้อนรับสู่ร้าน Green Corner วันนี้มีเมนูพิเศษมาแนะนำครับ...",
-                images: [
-                    "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=900&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=900&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=900&auto=format&fit=crop&q=80"
-                ]
-            },
-            {
-                id: 2,
-                title: "EP. 2: ความลับใต้ผ้ากันเปื้อน",
-                date: "5 ก.ย. 2026",
-                isLocked: true,
-                coinPrice: 4,
-                likes: 95,
-                content: "(ตอนพิเศษภาพการ์ตูนสีเต็มตอนสำหรับผู้ปลดล็อกเหรียญสนับสนุนนักเขียน)",
-                images: [
-                    "https://images.unsplash.com/photo-1544717305-2782549b5136?w=900&auto=format&fit=crop&q=80",
-                    "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=900&auto=format&fit=crop&q=80"
-                ]
-            }
-        ]
-    },
-    {
         id: "novel-1",
-        type: "novel", // novel = นิยายบรรยาย
+        type: "novel",
         title: "เล่ห์รักพันธนาการหัวใจ",
         tagline: "เมื่อความจำยอมกลายเป็นความผูกพันที่ยากจะถอนตัว",
         category: "โรแมนติก ดราม่า",
         status: "กำลังออนแอร์",
-        badgeColor: "bg-pink-400",
+        badgeColor: "bg-emerald-500",
         cover: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&auto=format&fit=crop&q=80",
         synopsis: "เขาแต่งงานกับเธอเพียงเพราะต้องการชดใช้ความผิดในอดีต ส่วนเธอ... ยอมก้าวเข้ามาในกรงขังนี้เพราะความจำเป็น แต่ยิ่งใกล้ชิด หัวใจที่เคยตั้งกำแพงไว้กลับยิ่งสั่นคลอน เมื่อความจริงที่ซ่อนอยู่เริ่มถูกเปิดเผย ความรักครั้งนี้จะลงเอยอย่างไร?",
         views: 14250,
         hearts: 2340,
+        hasEbook: true,
+        ebookPrice: 159,
+        ebookPdfUrl: "https://example.com/download/lehrak-ebook.pdf",
+        ebookEpubUrl: "https://example.com/download/lehrak-ebook.epub",
         chapters: [
             {
                 id: 1,
@@ -128,20 +90,66 @@ const NOVELS = [
 ริมฝีปากอุ่นร้อนประทับลงมาอย่างนุ่มนวลแต่หนักแน่น มันไม่ใช่ความก้าวร้าวอย่างที่เธอนึกกลัว หากแต่เป็นความหวานล้ำที่ค่อยๆ หลอมละลายกำแพงในใจของเธอทีละน้อย ความรู้สึกสับสนปนเปกันไปหมดระหว่างความแค้นและความโหยหา...`
             }
         ]
+    },
+    {
+        id: "comic-1",
+        type: "comic",
+        title: "รักลับๆ ของนายต้นชา (Webtoon)",
+        tagline: "เมื่อบาริสต้าหนุ่มมาดนิ่งต้องมาเป็นพี่เลี้ยงวาดภาพจำเป็น",
+        category: "การ์ตูนโรแมนติก",
+        status: "กำลังออนแอร์",
+        badgeColor: "bg-teal-500",
+        cover: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=600&auto=format&fit=crop&q=80",
+        synopsis: "เรื่องราวของนักเขียนสาวสุดโก๊ะที่ติดกาแฟมัทฉะเป็นชีวิตจิตใจ กับบาริสต้าหนุ่มประจำร้านชาเขียวผู้ซ่อนความลับสุดน่ารักเอาไว้! (การ์ตูนภาพ AI อ่านเพลิน เลื่อนดูภาพฟินๆ)",
+        views: 18500,
+        hearts: 3420,
+        hasEbook: true,
+        ebookPrice: 129,
+        ebookPdfUrl: "https://example.com/download/tea-comic-full.pdf",
+        ebookEpubUrl: "https://example.com/download/tea-comic-full.epub",
+        chapters: [
+            {
+                id: 1,
+                title: "EP. 1: กลิ่นมัทฉะในวันฟ้าใส",
+                date: "2 ก.ย. 2026",
+                isLocked: false,
+                coinPrice: 0,
+                likes: 128,
+                content: "ยินดีต้อนรับสู่ร้าน Green Corner วันนี้มีเมนูพิเศษมาแนะนำครับ...",
+                images: [
+                    "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=900&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=900&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=900&auto=format&fit=crop&q=80"
+                ]
+            },
+            {
+                id: 2,
+                title: "EP. 2: ความลับใต้ผ้ากันเปื้อน",
+                date: "5 ก.ย. 2026",
+                isLocked: true,
+                coinPrice: 4,
+                likes: 95,
+                content: "(ตอนพิเศษภาพการ์ตูนสีเต็มตอนสำหรับผู้ปลดล็อกเหรียญสนับสนุนนักเขียน)",
+                images: [
+                    "https://images.unsplash.com/photo-1544717305-2782549b5136?w=900&auto=format&fit=crop&q=80",
+                    "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=900&auto=format&fit=crop&q=80"
+                ]
+            }
+        ]
     }
 ];
 
 const DONATION_STICKERS = [
-    { id: "stk-1", name: "ดอกซากุระพาสเทล", icon: "🌸", coins: 5, message: "ขอให้นักเขียนมีแรงบันดาลใจหวานฉ่ำนะคะ!" },
-    { id: "stk-2", name: "ใบโคลเวอร์นำโชค", icon: "🍀", coins: 10, message: "ส่งความโชคดี พลังใจปั่นต้นฉบับไฟลุกค่ะ!" },
-    { id: "stk-3", name: "สายไหมสีฟ้าหวานละมุน", icon: "🫐", coins: 20, message: "เติมนมสดหวานมัน เติมรอยยิ้มให้นักเขียนค่ะ" },
+    { id: "stk-1", name: "ใบโคลเวอร์นำโชค", icon: "🍀", coins: 5, message: "ขอให้นักเขียนมีแรงบันดาลใจ โชคดีมีชัยนะคะ!" },
+    { id: "stk-2", name: "ชาเขียวมัทฉะลาเต้", icon: "🍵", coins: 10, message: "จิบมัทฉะหอมกรุ่น พักสายตานะคะคุณนักเขียน" },
+    { id: "stk-3", name: "เมลอนหวานฉ่ำ", icon: "🍈", coins: 20, message: "เติมความสดชื่น พลังใจปั่นงานเต็มเปี่ยมค่ะ!" },
     { id: "stk-4", name: "ช่อดอกไม้สดใส", icon: "💐", coins: 50, message: "ขอมอบช่อดอกไม้เป็นกำลังใจให้นักเขียนคนเก่งค่ะ" },
-    { id: "stk-5", name: "มงกุฎนักเขียนคนโปรด", icon: "👑", coins: 100, message: "นิยายและการ์ตูนเรื่องโปรดในดวงใจตลอดกาล 💖" }
+    { id: "stk-5", name: "มงกุฎนักเขียนคนโปรด", icon: "👑", coins: 100, message: "ผลงานเรื่องโปรดในดวงใจตลอดกาล 💚" }
 ];
 
 const TOPUP_PACKAGES = [
     { id: "pkg-1", coins: 20, price: 20, bonus: 0, tag: "ยอดนิยม" },
     { id: "pkg-2", coins: 50, price: 50, bonus: 5, tag: "แถม 5 เหรียญ" },
     { id: "pkg-3", coins: 100, price: 99, bonus: 15, tag: "คุ้มสุดๆ 🔥" },
-    { id: "pkg-4", coins: 300, price: 289, bonus: 60, tag: "สายเปย์ตัวจริง ✨" }
+    { id: "pkg-4", coins: 300, price: 289, bonus: 60, tag: "สายเปย์ตัวจริง 🍀" }
 ];
