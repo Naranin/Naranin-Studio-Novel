@@ -106,15 +106,15 @@
 
             <div class="flex items-center gap-2 sm:gap-3">
                 <!-- Bookshelf button -->
-                <button onclick="openBookshelfModal()" class="flex items-center gap-1.5 bg-emerald-50 hover:bg-emerald-100 text-black font-cute text-xs sm:text-sm px-3.5 py-1.5 rounded-full border border-emerald-300 active:scale-95 transition shadow-sm font-semibold" title="ชั้นหนังสือของฉัน">
+                <button onclick="openBookshelfModal()" class="flex items-center gap-1 bg-emerald-50 hover:bg-emerald-100 text-black font-cute text-xs px-2.5 sm:px-3.5 py-1.5 rounded-full border border-emerald-300 active:scale-95 transition shadow-sm font-semibold whitespace-nowrap" title="ชั้นหนังสือของฉัน">
                     <i class="fa-solid fa-bookmark text-emerald-700"></i>
-                    <span>ชั้นหนังสือ (<strong id="navBookshelfCount" class="text-black">0</strong>)</span>
+                    <span class="hidden xs:inline sm:inline">ชั้นหนังสือ</span><span>(<strong id="navBookshelfCount" class="text-black">0</strong>)</span>
                 </button>
 
                 <!-- Writer Studio Button -->
-                <button onclick="requestWriterStudioAccess()" class="flex items-center gap-1.5 bg-brand-50 hover:bg-brand-100 text-black font-cute text-xs sm:text-sm px-3.5 py-1.5 rounded-full border border-brand-300 active:scale-95 transition shadow-sm font-semibold" title="ห้องนักเขียน / จัดการเรื่อง">
+                <button onclick="requestWriterStudioAccess()" class="flex items-center gap-1 bg-brand-50 hover:bg-brand-100 text-black font-cute text-xs px-2.5 sm:px-3.5 py-1.5 rounded-full border border-brand-300 active:scale-95 transition shadow-sm font-semibold whitespace-nowrap" title="ห้องนักเขียน / จัดการเรื่อง">
                     <i class="fa-solid fa-feather-pointed text-brand-700"></i>
-                    <span>ห้องนักเขียน</span>
+                    <span>ห้องเขียน</span>
                 </button>
 
                 <!-- Coin Balance Pill -->
